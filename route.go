@@ -1,5 +1,8 @@
 package main
 
+import (
+	"webgo/framework"
+)
 
 func registerRouter(core *framework.Core) {
 	// core.Get("foo", framework.TimeoutHandler(FooControllerHandler, time.Second*1))

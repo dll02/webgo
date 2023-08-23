@@ -1,0 +1,33 @@
+# 注释，以 '#' 开头
+
+# 忽略所有编译生成的文件
+*.o
+*.out
+*.exe
+
+# 忽略临时文件和备份文件
+~*
+*.bak
+
+# 忽略所有日志文件
+*.log
+
+# 忽略所有的编译缓存文件
+__pycache__/
+node_modules/
+
+# 忽略编辑器或IDE生成的配置文件
+.idea/
+.vscode/
+
+# 忽略指定文件
+example.txt
+
+# 忽略特定文件夹及其内容
+folder_to_ignore/
+
+# 忽略特定扩展名的文件
+*.tmp
+
+# 在特定文件夹下忽略特定文件
+path/to/specific/file_to_ignore.txt

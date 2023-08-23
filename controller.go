@@ -17,6 +17,13 @@ func UserLoginController(c *framework.Context) error {
 	return nil
 }
 
+func SubjectInfoNameController(c *framework.Context) error {
+	// 打印控制器名字
+	c.Json(200, "ok, SubjectInfoNameController")
+	return nil
+}
+
+
 func SubjectAddController(c *framework.Context) error {
 	c.Json(200, "ok, SubjectAddController")
 	return nil

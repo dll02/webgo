@@ -20,5 +20,10 @@ func registerRouter(core *framework.Core) {
 		subjectApi.Put("/:id", SubjectUpdateController)
 		subjectApi.Get("/:id", SubjectGetController)
 		subjectApi.Get("/list/all", SubjectListController)
+		// 多层嵌套通用前缀
+		subjectInnerApi := subjectApi.Group("/info")
+		{
+			subjectInnerApi.Get("/name", SubjectInfoNameController)
+		}
 	}
 }

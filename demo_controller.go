@@ -27,7 +27,7 @@ func FooControllerHandler(c *framework.Context) error {
 		}()
 		// Do real action
 		time.Sleep(10 * time.Second)
-		c.Json(200, "ok")
+		c.SetStatus(200).Json("ok")
 
 		finish <- struct{}{}
 	}()
@@ -36,13 +36,13 @@ func FooControllerHandler(c *framework.Context) error {
 		c.WriterMux().Lock()
 		defer c.WriterMux().Unlock()
 		log.Println(p)
-		c.Json(500, "panic")
+		c.SetStatus(500).Json("panic")
 	case <-finish:
 		fmt.Println("finish")
 	case <-durationCtx.Done():
 		c.WriterMux().Lock()
 		defer c.WriterMux().Unlock()
-		c.Json(500, "time out")
+		c.SetStatus(500).Json("time out")
 		c.SetHasTimeout()
 	}
 	return nil
@@ -55,11 +55,12 @@ func Foo2(ctx *framework.Context) error {
 		"data": nil,
 	}
 	// 从请求体中获取参数
-	fooInt := ctx.FormInt("foo", 10)
+	fooInt, _ := ctx.FormInt("foo", 10)
 	// 构建返回结构
 	obj["data"] = fooInt
 	// 输出返回结构
-	return ctx.Json(http.StatusOK, obj)
+	ctx.SetStatus(http.StatusOK).Json(obj)
+	return nil
 }
 
 // 未封装自定义 Context 的控制器   -> 精准控制 request & response

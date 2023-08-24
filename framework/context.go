@@ -1,13 +1,8 @@
 package framework
 
 import (
-	"bytes"
 	"context"
-	"encoding/json"
-	"errors"
-	"io/ioutil"
 	"net/http"
-	"strconv"
 	"sync"
 	"time"
 )
@@ -25,6 +20,7 @@ type Context struct {
 	hasTimeout bool
 	// 写保护机制
 	writerMux *sync.Mutex
+	params map[string]string // url路由匹配的参数
 }
 
 func NewContext(r *http.Request, w http.ResponseWriter) *Context {
@@ -40,6 +36,11 @@ func NewContext(r *http.Request, w http.ResponseWriter) *Context {
 // 为context设置handlers
 func (ctx *Context) SetHandlers(handlers []ControllerHandler) {
 	ctx.handlers = handlers
+}
+
+// 设置参数
+func (ctx *Context) SetParams(params map[string]string) {
+	ctx.params = params
 }
 
 // 维护 Context 中的一个下标，来控制链路移动
@@ -99,143 +100,4 @@ func (ctx *Context) Value(key interface{}) interface{} {
 	return ctx.BaseContext().Value(key)
 }
 
-// #endregion
-
-// #region query url
-func (ctx *Context) QueryInt(key string, def int) int {
-	params := ctx.QueryAll()
-	if vals, ok := params[key]; ok {
-		len := len(vals)
-		if len > 0 {
-			intval, err := strconv.Atoi(vals[len-1])
-			if err != nil {
-				return def
-			}
-			return intval
-		}
-	}
-	return def
-}
-
-func (ctx *Context) QueryString(key string, def string) string {
-	params := ctx.QueryAll()
-	if vals, ok := params[key]; ok {
-		len := len(vals)
-		if len > 0 {
-			return vals[len-1]
-		}
-	}
-	return def
-}
-
-func (ctx *Context) QueryArray(key string, def []string) []string {
-	params := ctx.QueryAll()
-	if vals, ok := params[key]; ok {
-		return vals
-	}
-	return def
-}
-
-func (ctx *Context) QueryAll() map[string][]string {
-	if ctx.request != nil {
-		return map[string][]string(ctx.request.URL.Query())
-	}
-	return map[string][]string{}
-}
-
-// #endregion
-
-// #region form post
-func (ctx *Context) FormInt(key string, def int) int {
-	params := ctx.FormAll()
-	if vals, ok := params[key]; ok {
-		len := len(vals)
-		if len > 0 {
-			intval, err := strconv.Atoi(vals[len-1])
-			if err != nil {
-				return def
-			}
-			return intval
-		}
-	}
-	return def
-}
-
-func (ctx *Context) FormString(key string, def string) string {
-	params := ctx.FormAll()
-	if vals, ok := params[key]; ok {
-		len := len(vals)
-		if len > 0 {
-			return vals[len-1]
-		}
-	}
-	return def
-}
-
-func (ctx *Context) FormArray(key string, def []string) []string {
-	params := ctx.FormAll()
-	if vals, ok := params[key]; ok {
-		return vals
-	}
-	return def
-}
-
-func (ctx *Context) FormAll() map[string][]string {
-	if ctx.request != nil {
-		return map[string][]string(ctx.request.PostForm)
-	}
-	return map[string][]string{}
-}
-
-// #endregion
-
-// #region application/json post
-
-func (ctx *Context) BindJson(obj interface{}) error {
-	if ctx.request != nil {
-		body, err := ioutil.ReadAll(ctx.request.Body)
-		if err != nil {
-			return err
-		}
-		//对ctx.request.Body的处理是为了确保多次读取请求主体数据不会导致问题。
-		// 从 NewBuffer包装成一个io.ReadCloser 可以被多次正确读取
-		ctx.request.Body = ioutil.NopCloser(bytes.NewBuffer(body))
-
-		err = json.Unmarshal(body, obj)
-		if err != nil {
-			return err
-		}
-	} else {
-		return errors.New("ctx.request empty")
-	}
-	return nil
-}
-
-// #endregion
-
-// #region response
-
-func (ctx *Context) Json(status int, obj interface{}) error {
-	if ctx.HasTimeout() {
-		return nil
-	}
-	ctx.responseWriter.Header().Set("Content-Type", "application/json")
-	ctx.responseWriter.WriteHeader(status)
-	byt, err := json.Marshal(obj)
-	if err != nil {
-		ctx.responseWriter.WriteHeader(500)
-		return err
-	}
-	ctx.responseWriter.Write(byt)
-	return nil
-}
-
-func (ctx *Context) HTML(status int, obj interface{}, template string) error {
-	return nil
-}
-
-func (ctx *Context) Text(status int, obj string) error {
-	return nil
-}
-
-// #endregion
+ 

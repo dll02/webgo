@@ -1,48 +1,86 @@
 package framework
 
 type IGroup interface {
-	Get(string, ControllerHandler)
-	Post(string, ControllerHandler)
-	Put(string, ControllerHandler)
-	Delete(string, ControllerHandler)
+	Get(string, ...ControllerHandler)
+	Post(string, ...ControllerHandler)
+	Put(string, ...ControllerHandler)
+	Delete(string, ...ControllerHandler)
+
+	// 实现嵌套group
 	Group(string) IGroup
+
+	// 嵌套中间件
+	Use(middlewares ...ControllerHandler)
 }
 
+// Group struct 实现了IGroup
 type Group struct {
-	core   *Core
-	prefix string
+	core   *Core  // 指向core结构
+	parent *Group //指向上一个Group，如果有的话
+	prefix string // 这个group的通用前缀
+
+	middlewares []ControllerHandler // 存放中间件
 }
 
+// 初始化Group
 func NewGroup(core *Core, prefix string) *Group {
 	return &Group{
-		core: core, 
-		prefix: prefix,
+		core:        core,
+		parent:      nil,
+		prefix:      prefix,
+		middlewares: []ControllerHandler{},
 	}
 }
 
-func (g *Group) Group(prefix string) IGroup{
-	return &Group{
-		core: g.core, 
-		prefix: g.prefix+prefix,
+func (g *Group) Get(uri string, handlers ...ControllerHandler) {
+	uri = g.getAbsolutePrefix() + uri
+	allHandlers := append(g.getMiddlewares(), handlers...)
+	g.core.Get(uri, allHandlers...)
+}
+
+func (g *Group) Post(uri string, handlers ...ControllerHandler) {
+	uri = g.getAbsolutePrefix() + uri
+	allHandlers := append(g.getMiddlewares(), handlers...)
+	g.core.Post(uri, allHandlers...)
+}
+
+func (g *Group) Put(uri string, handlers ...ControllerHandler) {
+	uri = g.getAbsolutePrefix() + uri
+	allHandlers := append(g.getMiddlewares(), handlers...)
+	g.core.Put(uri, allHandlers...)
+}
+
+func (g *Group) Delete(uri string, handlers ...ControllerHandler) {
+	uri = g.getAbsolutePrefix() + uri
+	allHandlers := append(g.getMiddlewares(), handlers...)
+	g.core.Delete(uri, allHandlers...)
+}
+
+// 获取当前group的绝对路径
+func (g *Group) getAbsolutePrefix() string {
+	if g.parent == nil {
+		return g.prefix
 	}
+	return g.parent.getAbsolutePrefix() + g.prefix
 }
 
-func (g *Group) Get(uri string, handler ControllerHandler) {  
-	uri = g.prefix + uri  
-	g.core.Get(uri, handler)
+// 获取某个group的middleware
+// 这里就是获取除了Get/Post/Put/Delete之外设置的middleware
+func (g *Group) getMiddlewares() []ControllerHandler {
+	if g.parent == nil {
+		return g.middlewares
+	}
+
+	return append(g.parent.getMiddlewares(), g.middlewares...)
 }
 
-func (g *Group) Post(uri string, handler ControllerHandler) {  
-	uri = g.prefix + uri  
-	g.core.Post(uri, handler)
+func (g *Group) Group(prefix string) IGroup {
+	cgroup := NewGroup(g.core, prefix)
+	cgroup.parent = g
+	return cgroup
 }
 
-func (g *Group) Put(uri string, handler ControllerHandler) {  
-	uri = g.prefix + uri  
-	g.core.Put(uri, handler)
-}
-
-func (g *Group) Delete(uri string, handler ControllerHandler) {  
-	uri = g.prefix + uri  
-	g.core.Delete(uri, handler)
+// 注册中间件
+func (g *Group) Use(middlewares ...ControllerHandler) {
+	g.middlewares = append(g.middlewares, middlewares...)
 }

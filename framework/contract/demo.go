@@ -1,10 +1,10 @@
-package demo
+package contract
 
 // Demo服务的key
-const Key = "webgo:demo"
+const DemoKey = "webgo:demo"
 
 // Demo服务的接口
-type Service interface {
+type DemoService interface {
 	GetFoo() Foo
 }
 

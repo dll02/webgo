@@ -2,7 +2,7 @@ package demo
 
 import (
 	"fmt"
-
+	"github.com/dll02/goweb/framework/contract"
 	"github.com/dll02/goweb/framework"
 )
 
@@ -12,7 +12,7 @@ type DemoServiceProvider struct {
 
 // Name方法直接将服务对应的字符串凭证返回，在这个例子中就是“hade.demo"
 func (sp *DemoServiceProvider) Name() string {
-	return Key
+	return contract.DemoKey
 }
 
 // Register方法是注册初始化服务实例的方法，我们这里先暂定为NewDemoService

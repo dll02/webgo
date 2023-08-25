@@ -2,14 +2,14 @@ package demo
 
 import (
 	"fmt"
-
+	"github.com/dll02/goweb/framework/contract"
 	"github.com/dll02/goweb/framework"
 )
 
 // 具体的接口实例
 type DemoService struct {
 	// 实现接口
-	Service
+	contract.DemoService
 
 	// 参数
 	c framework.Container
@@ -26,8 +26,8 @@ func NewDemoService(params ...interface{}) (interface{}, error) {
 }
 
 // 实现接口
-func (s *DemoService) GetFoo() Foo {
-	return Foo{
+func (s *DemoService) GetFoo() contract.Foo {
+	return contract.Foo{
 		Name: "i am foo",
 	}
 }

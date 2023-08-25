@@ -8,10 +8,11 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
-
+	appHttp "github.com/dll02/goweb/app/http"
 	"github.com/dll02/goweb/framework/gin"
 	"github.com/dll02/goweb/framework/middleware"
-	"github.com/dll02/goweb/provider/demo"
+	"github.com/dll02/goweb/framework/provider/demo"
+	"github.com/dll02/goweb/framework/provider/app"
 )
 
 const shortDuration = 1 * time.Millisecond
@@ -19,11 +20,17 @@ const shortDuration = 1 * time.Millisecond
 func main() {
 
 	core := gin.New()
+
+		// 绑定具体的服务
 	core.Bind(&demo.DemoServiceProvider{})
+	core.Bind(&app.WebgoAppProvider{})
+
+	// 配中间处理器
 	core.Use(gin.Recovery())
 	core.Use(middleware.Cost())
 
-	registerRouter(core)
+	// 绑定路由处理器
+	appHttp.Routes(core)
 	server := &http.Server{
 		Handler: core,
 		Addr:    ":8888",

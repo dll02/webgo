@@ -11,6 +11,7 @@ import (
 
 	"github.com/dll02/goweb/framework/gin"
 	"github.com/dll02/goweb/framework/middleware"
+	"github.com/dll02/goweb/provider/demo"
 )
 
 const shortDuration = 1 * time.Millisecond
@@ -18,6 +19,7 @@ const shortDuration = 1 * time.Millisecond
 func main() {
 
 	core := gin.New()
+	core.Bind(&demo.DemoServiceProvider{})
 	core.Use(gin.Recovery())
 	core.Use(middleware.Cost())
 

@@ -8,16 +8,17 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
-	"webgo/framework"
-	"webgo/framework/middleware"
+
+	"github.com/dll02/goweb/framework/gin"
+	"github.com/dll02/goweb/framework/middleware"
 )
 
 const shortDuration = 1 * time.Millisecond
 
 func main() {
-	core := framework.NewCore()
-	// 注册core 上的中间件
-	core.Use(middleware.Recovery())
+
+	core := gin.New()
+	core.Use(gin.Recovery())
 	core.Use(middleware.Cost())
 
 	registerRouter(core)
@@ -38,10 +39,10 @@ func main() {
 	<-quit
 
 	// 调用Server.Shutdown graceful结束
-	// timeoutCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	// defer cancel()
+	timeoutCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
 
-	if err := server.Shutdown(context.Background()); err != nil {
+	if err := server.Shutdown(timeoutCtx); err != nil {
 		log.Fatal("Server Shutdown:", err)
 	}
 

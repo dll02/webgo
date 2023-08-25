@@ -1,36 +1,34 @@
 package main
 
 import (
-	"webgo/framework"
+	"github.com/dll02/goweb/framework/gin"
 )
 
-func SubjectInfoNameController(c *framework.Context) error {
+func SubjectInfoNameController(c *gin.Context) {
 	// 打印控制器名字
-	c.SetOkStatus().Json( "ok, SubjectInfoNameController")
-	return nil
+	c.ISetOkStatus().IJson("ok, SubjectInfoNameController")
 }
 
-func SubjectAddController(c *framework.Context) error {
-	c.SetOkStatus().Json( "ok, SubjectAddController")
-	return nil
+func SubjectAddController(c *gin.Context) {
+	c.ISetOkStatus().IJson("ok, SubjectAddController")
 }
 
-func SubjectUpdateController(c *framework.Context) error {
-	c.SetOkStatus().Json( "ok, SubjectUpdateController")
-	return nil
+func SubjectUpdateController(c *gin.Context) {
+	c.ISetOkStatus().IJson("ok, SubjectUpdateController")
 }
 
-func SubjectDelController(c *framework.Context) error {
-	c.SetOkStatus().Json( "ok, SubjectDelController")
-	return nil
+func SubjectDelController(c *gin.Context) {
+	c.ISetOkStatus().IJson("ok, SubjectDelController")
 }
 
-func SubjectGetController(c *framework.Context) error {
-	c.SetOkStatus().Json( "ok, SubjectGetController")
-	return nil
+func SubjectGetController(c *gin.Context) {
+	c.ISetOkStatus().IJson("ok, SubjectGetController")
 }
 
-func SubjectListController(c *framework.Context) error {
-	c.SetOkStatus().Json( "ok, SubjectListController")
-	return nil
+func SubjectListController(c *gin.Context) {
+	c.ISetOkStatus().IJson("ok, SubjectListController")
+}
+
+func SubjectNameController(c *gin.Context) {
+	c.ISetOkStatus().IJson("ok, SubjectNameController")
 }

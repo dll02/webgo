@@ -8,7 +8,7 @@ import (
 
 const shortDuration = 1 * time.Millisecond
 
-func main() {
+func main2() {
     // 创建截止时间
   d := time.Now().Add(shortDuration)
     // 创建有截止时间的 Context

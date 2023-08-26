@@ -1,13 +1,11 @@
 package app
 
 import (
-	"flag"
-
 	"path/filepath"
 
-	"github.com/dll02/goweb/framework"
-	"github.com/dll02/goweb/framework/util"
-
+	"github.com/dll02/webgo/framework"
+	"github.com/dll02/webgo/framework/util"
+	"github.com/google/uuid"
 	"github.com/pkg/errors"
 )
 
@@ -15,6 +13,7 @@ import (
 type WebgoApp struct {
 	container  framework.Container // 服务容器
 	baseFolder string              // 基础路径
+	appId      string              // 表示当前这个app的唯一id, 可以用于分布式锁等
 }
 
 // Version 实现版本
@@ -28,16 +27,9 @@ func (h WebgoApp) BaseFolder() string {
 		return h.baseFolder
 	}
 
-	// 如果没有设置，则使用参数
-	var baseFolder string
-	flag.StringVar(&baseFolder, "base_folder", "", "base_folder参数, 默认为当前路径")
-	flag.Parse()
-	if baseFolder != "" {
-		return baseFolder
-	}
-
 	// 如果参数也没有，使用默认的当前路径
-	return util.GetExecDirectory()
+	h.baseFolder = util.GetExecDirectory()
+	return h.baseFolder
 }
 
 // ConfigFolder  表示配置文件地址
@@ -87,6 +79,11 @@ func (h WebgoApp) TestFolder() string {
 	return filepath.Join(h.BaseFolder(), "test")
 }
 
+// AppID 表示这个App的唯一ID
+func (h WebgoApp) AppID() string {
+	return h.appId
+}
+
 // NewWebgoApp 初始化WebgoApp
 func NewWebgoApp(params ...interface{}) (interface{}, error) {
 	if len(params) != 2 {
@@ -96,5 +93,6 @@ func NewWebgoApp(params ...interface{}) (interface{}, error) {
 	// 有两个参数，一个是容器，一个是baseFolder
 	container := params[0].(framework.Container)
 	baseFolder := params[1].(string)
-	return &WebgoApp{baseFolder: baseFolder, container: container}, nil
+	appId := uuid.New().String()
+	return &WebgoApp{baseFolder: baseFolder, container: container, appId: appId}, nil
 }

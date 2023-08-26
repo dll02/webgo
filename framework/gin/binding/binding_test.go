@@ -19,7 +19,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/dll02/goweb/framework/gin/testdata/protoexample"
+	"github.com/dll02/webgo/framework/gin/testdata/protoexample"
 	"github.com/golang/protobuf/proto"
 	"github.com/stretchr/testify/assert"
 )

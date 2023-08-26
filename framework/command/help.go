@@ -3,8 +3,8 @@ package command
 import (
 	"fmt"
 
-	"github.com/dll02/goweb/framework/cobra"
-	"github.com/dll02/goweb/framework/contract"
+	"github.com/dll02/webgo/framework/cobra"
+	"github.com/dll02/webgo/framework/contract"
 )
 
 // helpCommand show current envionment

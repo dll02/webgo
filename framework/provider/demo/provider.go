@@ -2,8 +2,8 @@ package demo
 
 import (
 	"fmt"
-	"github.com/dll02/goweb/framework/contract"
-	"github.com/dll02/goweb/framework"
+	"github.com/dll02/webgo/framework"
+	"github.com/dll02/webgo/framework/contract"
 )
 
 // 服务提供方

@@ -1,6 +1,6 @@
 package command
 
-import "github.com/dll02/goweb/framework/cobra"
+import "github.com/dll02/webgo/framework/cobra"
 
 // AddKernelCommands will add all command/* to root command
 func AddKernelCommands(root *cobra.Command) {
@@ -9,42 +9,42 @@ func AddKernelCommands(root *cobra.Command) {
 	//root.AddCommand(envCommand)
 	//root.AddCommand(deployCommand)
 	//
-	//// cron
-	//root.AddCommand(initCronCommand())
+	// cron
+	root.AddCommand(initCronCommand())
 	//// cmd
 	//cmdCommand.AddCommand(cmdListCommand)
 	//cmdCommand.AddCommand(cmdCreateCommand)
 	//root.AddCommand(cmdCommand)
 	//
-	//// build
+	// build
 	//buildCommand.AddCommand(buildSelfCommand)
 	//buildCommand.AddCommand(buildBackendCommand)
 	//buildCommand.AddCommand(buildFrontendCommand)
 	//buildCommand.AddCommand(buildAllCommand)
 	//root.AddCommand(buildCommand)
 	//
-	//// app
+	// app
 	root.AddCommand(initAppCommand())
 	//
-	//// dev
+	// dev
 	//root.AddCommand(initDevCommand())
 	//
-	//// middleware
+	// middleware
 	//middlewareCommand.AddCommand(middlewareAllCommand)
 	//middlewareCommand.AddCommand(middlewareAddCommand)
 	//middlewareCommand.AddCommand(middlewareRemoveCommand)
 	//root.AddCommand(middlewareCommand)
 	//
-	//// swagger
+	// swagger
 	//swagger.IndexCommand.AddCommand(swagger.InitServeCommand())
 	//swagger.IndexCommand.AddCommand(swagger.GenCommand)
 	//root.AddCommand(swagger.IndexCommand)
 	//
-	//// provider
+	// provider
 	//providerCommand.AddCommand(providerListCommand)
 	//providerCommand.AddCommand(providerCreateCommand)
 	//root.AddCommand(providerCommand)
 	//
-	//// new
+	// new
 	//root.AddCommand(initNewCommand())
 }

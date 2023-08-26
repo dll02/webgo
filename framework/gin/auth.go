@@ -10,7 +10,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/dll02/goweb/framework/gin/internal/bytesconv"
+	"github.com/dll02/webgo/framework/gin/internal/bytesconv"
 )
 
 // AuthUserKey is the cookie name for user credential in basic auth.

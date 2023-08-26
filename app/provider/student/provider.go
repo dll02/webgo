@@ -1,6 +1,6 @@
 package student
 
-import "github.com/dll02/goweb/framework"
+import "github.com/dll02/webgo/framework"
 
 type SubjectProvider struct {
 	framework.ServiceProvider

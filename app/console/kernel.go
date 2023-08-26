@@ -1,11 +1,12 @@
 package console
 
 import (
-	"github.com/dll02/goweb/app/console/command/demo"
-	"github.com/dll02/goweb/framework"
- 
-	"github.com/dll02/goweb/framework/cobra"
-	"github.com/dll02/goweb/framework/command"
+	"github.com/dll02/webgo/app/console/command/demo"
+	"github.com/dll02/webgo/framework"
+	"time"
+
+	"github.com/dll02/webgo/framework/cobra"
+	"github.com/dll02/webgo/framework/command"
 )
 
 // RunCommand  初始化根Command并运行
@@ -42,4 +43,8 @@ func RunCommand(container framework.Container) error {
 func AddAppCommand(rootCmd *cobra.Command) {
 	//  demo 例子
 	rootCmd.AddCommand(demo.InitFoo())
+	// corn 例子
+	//rootCmd.AddCronCommand("* * * * * *", demo.FooCornCommand)
+	// 启动一个分布式任务调度，调度的服务名称为init_func_for_test，每个节点每5s调用一次Foo命令，抢占到了调度任务的节点将抢占锁持续挂载2s才释放
+	rootCmd.AddDistributedCronCommand("foo_func_for_test", "*/5 * * * * *", demo.FooCommand, 2*time.Second)
 }

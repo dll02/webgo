@@ -7,7 +7,7 @@ package gin
 import (
 	"log"
 
-	"github.com/dll02/goweb/framework/gin/binding"
+	"github.com/dll02/webgo/framework/gin/binding"
 )
 
 // BindWith binds the passed struct pointer using the specified binding engine.

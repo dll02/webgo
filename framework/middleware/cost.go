@@ -4,7 +4,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/dll02/goweb/framework/gin"
+	"github.com/dll02/webgo/framework/gin"
 )
 
 // recovery机制，将协程中的函数异常进行捕获

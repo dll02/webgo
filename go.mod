@@ -1,4 +1,4 @@
-module github.com/dll02/goweb
+module github.com/dll02/webgo
 
 go 1.18
 
@@ -14,7 +14,14 @@ require (
 	gopkg.in/yaml.v2 v2.4.0
 )
 
-require github.com/spf13/pflag v1.0.5 // indirect
+require (
+	github.com/erikdubbelboer/gspt v0.0.0-20210805194459-ce36a5128377 // indirect
+	github.com/google/uuid v1.3.1 // indirect
+	github.com/kardianos/osext v0.0.0-20190222173326-2bc1f35cddc0 // indirect
+	github.com/robfig/cron/v3 v3.0.1 // indirect
+	github.com/sevlyar/go-daemon v0.1.6 // indirect
+	github.com/spf13/pflag v1.0.5 // indirect
+)
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect

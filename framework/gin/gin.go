@@ -14,9 +14,9 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/dll02/goweb/framework"
-	"github.com/dll02/goweb/framework/gin/internal/bytesconv"
-	"github.com/dll02/goweb/framework/gin/render"
+	"github.com/dll02/webgo/framework"
+	"github.com/dll02/webgo/framework/gin/internal/bytesconv"
+	"github.com/dll02/webgo/framework/gin/render"
 )
 
 const defaultMultipartMemory = 32 << 20 // 32 MB
@@ -193,7 +193,7 @@ func Default() *Engine {
 
 func (engine *Engine) allocateContext() *Context {
 	v := make(Params, 0, engine.maxParams)
-	return &Context{engine: engine, params: &v,container: engine.container}
+	return &Context{engine: engine, params: &v, container: engine.container}
 }
 
 // Delims sets template left and right delims and returns a Engine instance.

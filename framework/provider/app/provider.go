@@ -1,8 +1,8 @@
 package app
 
 import (
-	"github.com/dll02/goweb/framework"
-	"github.com/dll02/goweb/framework/contract"
+	"github.com/dll02/webgo/framework"
+	"github.com/dll02/webgo/framework/contract"
 )
 
 // WebgoAppProvider 提供App的具体实现方法

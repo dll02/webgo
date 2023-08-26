@@ -8,7 +8,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/dll02/goweb/framework/gin/binding"
+	"github.com/dll02/webgo/framework/gin/binding"
 )
 
 // EnvGinMode indicates environment name for gin mode.

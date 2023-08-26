@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/dll02/goweb/framework/gin"
+	"github.com/dll02/webgo/framework/gin"
 )
 
 var once sync.Once

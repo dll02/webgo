@@ -19,6 +19,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"github.com/robfig/cron/v3"
 
 	"io"
 	"os"
@@ -26,7 +27,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/dll02/goweb/framework"
+	"github.com/dll02/webgo/framework"
 	flag "github.com/spf13/pflag"
 )
 
@@ -39,6 +40,11 @@ type FParseErrWhitelist flag.ParseErrorsWhitelist
 // definition to ensure usability.
 // 执行命令的结构
 type Command struct {
+
+	// Command支持cron，只在RootCommand中有这个值
+	Cron *cron.Cron
+	//对应Cron命令的信息
+	CronSpecs []CronSpec
 	// 服务容器
 	container framework.Container
 	// Use is the one-line usage message.
@@ -132,7 +138,7 @@ type Command struct {
 	// PreRunE: PreRun but returns an error.
 	PreRunE func(cmd *Command, args []string) error
 	// Run: Typically the actual work function. Most commands will only implement this.
-	 // zh: 实际跑的时候运行的函数
+	// zh: 实际跑的时候运行的函数
 	Run func(cmd *Command, args []string)
 	// RunE: Run but returns an error.
 	// // zh: 实际跑的时候运行的函数 但返回 error

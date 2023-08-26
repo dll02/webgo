@@ -8,7 +8,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/dll02/goweb/framework/gin/internal/json"
+	"github.com/dll02/webgo/framework/gin/internal/json"
 	"github.com/stretchr/testify/assert"
 )
 

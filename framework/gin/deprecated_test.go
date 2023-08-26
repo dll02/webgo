@@ -10,7 +10,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/dll02/goweb/framework/gin/binding"
+	"github.com/dll02/webgo/framework/gin/binding"
 	"github.com/stretchr/testify/assert"
 )
 

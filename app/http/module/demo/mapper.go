@@ -1,7 +1,7 @@
 package demo
 
 import (
-	studentService "github.com/dll02/goweb/app/provider/student"
+	studentService "github.com/dll02/webgo/app/provider/student"
 )
 
 func UserModelsToUserDTOs(models []UserModel) []UserDTO {

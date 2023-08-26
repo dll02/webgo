@@ -9,8 +9,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/dll02/goweb/framework/cobra"
-	"github.com/dll02/goweb/framework/contract"
+	"github.com/dll02/webgo/framework/cobra"
+	"github.com/dll02/webgo/framework/contract"
 )
 
 // initAppCommand 初始化app命令和其子命令

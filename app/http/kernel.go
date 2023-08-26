@@ -1,6 +1,6 @@
 package http
 
-import "github.com/dll02/goweb/framework/gin"
+import "github.com/dll02/webgo/framework/gin"
 
 // NewHttpEngine is command
 func NewHttpEngine() (*gin.Engine, error) {

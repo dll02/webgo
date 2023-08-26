@@ -1,8 +1,8 @@
 package main
 
-import "github.com/dll02/goweb/framework/gin"
+import "github.com/dll02/webgo/framework/gin"
 
-func main() {
+func main3() {
 	r := gin.Default()
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{

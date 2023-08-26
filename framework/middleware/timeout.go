@@ -6,12 +6,12 @@ import (
 	"log"
 	"time"
 
-	"github.com/dll02/goweb/framework/gin"
+	"github.com/dll02/webgo/framework/gin"
 )
 
 func TimeoutHandler(d time.Duration) gin.HandlerFunc {
 	// 使用函数回调
-	return func(c *gin.Context)   {
+	return func(c *gin.Context) {
 
 		finish := make(chan struct{}, 1)
 		panicChan := make(chan interface{}, 1)

@@ -3,7 +3,7 @@ package kernel
 import (
 	"net/http"
 
-	"github.com/dll02/goweb/framework/gin"
+	"github.com/dll02/webgo/framework/gin"
 )
 
 // 引擎服务

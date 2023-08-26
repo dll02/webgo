@@ -2,9 +2,8 @@ package middleware
 
 import (
 	"fmt"
-	"github.com/dll02/goweb/framework/gin"
+	"github.com/dll02/webgo/framework/gin"
 )
-
 
 func Test1() gin.HandlerFunc {
 	// 使用函数回调

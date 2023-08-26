@@ -8,7 +8,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/dll02/goweb/framework/gin/binding"
+	"github.com/dll02/webgo/framework/gin/binding"
 	"github.com/stretchr/testify/assert"
 )
 

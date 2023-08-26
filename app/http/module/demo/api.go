@@ -1,9 +1,9 @@
 package demo
 
 import (
-	"github.com/dll02/goweb/framework/contract"
-	"github.com/dll02/goweb/framework/gin"
-	studentService "github.com/dll02/goweb/app/provider/student"
+	studentService "github.com/dll02/webgo/app/provider/student"
+	"github.com/dll02/webgo/framework/contract"
+	"github.com/dll02/webgo/framework/gin"
 )
 
 type DemoApi struct {

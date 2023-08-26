@@ -1,7 +1,6 @@
 package gin
 
-import "github.com/dll02/goweb/framework"
-
+import "github.com/dll02/webgo/framework"
 
 func (engine *Engine) SetContainer(container framework.Container) {
 	engine.container = container

@@ -3,13 +3,26 @@ package demo
 import (
 	"log"
 
-	"github.com/dll02/goweb/framework/cobra"
+	"github.com/dll02/webgo/framework/cobra"
 )
 
 // InitFoo 初始化Foo命令
 func InitFoo() *cobra.Command {
 	FooCommand.AddCommand(Foo1Command)
 	return FooCommand
+}
+
+// FooCommand 代表Foo命令
+var FooCornCommand = &cobra.Command{
+	Use:     "fcorn",
+	Short:   "fcorn的简要说明",
+	Long:    "fcorn的长说明",
+	Aliases: []string{"fcorn", "fc"},
+	Example: "foo命令的例子",
+	RunE: func(c *cobra.Command, args []string) error {
+		log.Println("execute fcorn command")
+		return nil
+	},
 }
 
 // FooCommand 代表Foo命令
@@ -22,6 +35,7 @@ var FooCommand = &cobra.Command{
 	RunE: func(c *cobra.Command, args []string) error {
 		container := c.GetContainer()
 		log.Println(container)
+		log.Println("execute foo command")
 		return nil
 	},
 }

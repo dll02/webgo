@@ -21,13 +21,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/dll02/goweb/framework/gin/binding"
+	"github.com/dll02/webgo/framework/gin/binding"
 
 	"github.com/gin-contrib/sse"
 	"github.com/golang/protobuf/proto"
 	"github.com/stretchr/testify/assert"
 
-	testdata "github.com/dll02/goweb/framework/gin/testdata/protoexample"
+	testdata "github.com/dll02/webgo/framework/gin/testdata/protoexample"
 )
 
 var _ context.Context = &Context{}

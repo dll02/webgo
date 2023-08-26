@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/dll02/goweb/framework/gin/internal/bytesconv"
+	"github.com/dll02/webgo/framework/gin/internal/bytesconv"
 )
 
 // String contains the given interface object slice and its format.

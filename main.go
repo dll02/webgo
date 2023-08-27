@@ -6,7 +6,9 @@ import (
 	student "github.com/dll02/webgo/app/provider/student"
 	"github.com/dll02/webgo/framework"
 	"github.com/dll02/webgo/framework/provider/app"
+	"github.com/dll02/webgo/framework/provider/config"
 	"github.com/dll02/webgo/framework/provider/distributed"
+	"github.com/dll02/webgo/framework/provider/env"
 	"github.com/dll02/webgo/framework/provider/kernel"
 )
 
@@ -19,6 +21,8 @@ func main() {
 	// 后续初始化需要绑定的服务提供者...
 	container.Bind(&student.SubjectProvider{})
 	container.Bind(&distributed.LocalDistributedProvider{})
+	container.Bind(&env.WebgoEnvProvider{})
+	container.Bind(&config.WebgoConfigProvider{})
 
 	// 将HTTP引擎初始化,并且作为服务提供者绑定到服务容器中
 	if engine, err := http.NewHttpEngine(); err == nil {

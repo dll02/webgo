@@ -2,15 +2,18 @@ package config
 
 import (
 	"bytes"
+	"fmt"
+	"github.com/dll02/webgo/framework/contract"
+	"github.com/fsnotify/fsnotify"
 	"io/ioutil"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/dll02/webgo/framework"
-	"github.com/dll02/webgo/framework/contract"
-
 	"github.com/mitchellh/mapstructure"
 	"github.com/spf13/cast"
 
@@ -18,86 +21,170 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+// WebgoConfig  表示Webgo框架的配置文件服务
 type WebgoConfig struct {
-	c framework.Container
-
-	folder   string
-	env      string
-	keyDelim string
-
-	envMaps  map[string]string // envmap
-	confMaps map[string]interface{}
-	confRaws map[string][]byte
+	c        framework.Container    // 容器
+	folder   string                 // 文件夹
+	keyDelim string                 // 路径的分隔符，默认为点
+	lock     sync.RWMutex           // 配置文件读写锁
+	envMaps  map[string]string      // 所有的环境变量
+	confMaps map[string]interface{} // 配置文件结构，key为文件名
+	confRaws map[string][]byte      // 配置文件的原始信息
 }
 
-func NewWebgoConfig(params ...interface{}) (interface{}, error) {
-	if len(params) != 4 {
-		return nil, errors.New("NewWebgoConfig params error")
+// 读取某个配置文件
+func (conf *WebgoConfig) loadConfigFile(folder string, file string) error {
+	conf.lock.Lock()
+	defer conf.lock.Unlock()
+
+	//  判断文件是否以yaml或者yml作为后缀
+	s := strings.Split(file, ".")
+	if len(s) == 2 && (s[1] == "yaml" || s[1] == "yml") {
+		name := s[0]
+
+		// 读取文件内容
+		bf, err := ioutil.ReadFile(filepath.Join(folder, file))
+		if err != nil {
+			return err
+		}
+		// 直接针对文本做环境变量的替换
+		bf = replace(bf, conf.envMaps)
+		// 解析对应的文件
+		c := map[string]interface{}{}
+		if err := yaml.Unmarshal(bf, &c); err != nil {
+			return err
+		}
+		conf.confMaps[name] = c
+		conf.confRaws[name] = bf
+
+		// 读取app.path中的信息，更新app对应的folder
+		if name == "app" && conf.c.IsBind(contract.AppKey) {
+			if p, ok := c["path"]; ok {
+				appService := conf.c.MustMake(contract.AppKey).(contract.App)
+				appService.LoadAppConfig(cast.ToStringMapString(p))
+			}
+		}
 	}
+	return nil
+}
 
-	folder := params[0].(string)
-	envMaps := params[1].(map[string]string)
-	env := params[2].(string)
+// 删除文件的操作
+func (conf *WebgoConfig) removeConfigFile(folder string, file string) error {
+	conf.lock.Lock()
+	defer conf.lock.Unlock()
+	s := strings.Split(file, ".")
+	// 只有yaml或者yml后缀才执行
+	if len(s) == 2 && (s[1] == "yaml" || s[1] == "yml") {
+		name := s[0]
+		// 删除内存中对应的key
+		delete(conf.confRaws, name)
+		delete(conf.confMaps, name)
+	}
+	return nil
+}
 
-	c := params[3].(framework.Container)
+// NewWebgoConfig 初始化Config方法
+func NewWebgoConfig(params ...interface{}) (interface{}, error) {
+	container := params[0].(framework.Container)
+	envFolder := params[1].(string)
+	envMaps := params[2].(map[string]string)
 
-	envFolder := filepath.Join(folder, env)
-	// check folder exist
+	// 检查文件夹是否存在
 	if _, err := os.Stat(envFolder); os.IsNotExist(err) {
 		return nil, errors.New("folder " + envFolder + " not exist: " + err.Error())
 	}
 
+	// 实例化
 	WebgoConf := &WebgoConfig{
-		c:        c,
-		folder:   folder,
-		env:      env,
+		c:        container,
+		folder:   envFolder,
 		envMaps:  envMaps,
 		confMaps: map[string]interface{}{},
 		confRaws: map[string][]byte{},
 		keyDelim: ".",
+		lock:     sync.RWMutex{},
 	}
 
-	// read all yml/yaml files in folder
+	// 读取每个文件
 	files, err := ioutil.ReadDir(envFolder)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
 	for _, file := range files {
-		s := strings.Split(file.Name(), ".")
-		if len(s) == 2 && (s[1] == "yaml" || s[1] == "yml") {
-			name := s[0]
-
-			// read file bytes
-			bf, err := ioutil.ReadFile(filepath.Join(envFolder, file.Name()))
-			if err != nil {
-				continue
-			}
-			WebgoConf.confRaws[name] = bf
-			// do replace
-			bf = replace(bf, envMaps)
-			// parse yaml
-			c := map[string]interface{}{}
-			if err := yaml.Unmarshal(bf, &c); err != nil {
-				continue
-			}
-			WebgoConf.confMaps[name] = c
+		fileName := file.Name()
+		err := WebgoConf.loadConfigFile(envFolder, fileName)
+		if err != nil {
+			log.Println(err)
+			continue
 		}
 	}
 
-	// init app path
-	if WebgoConf.IsExist("app.path") && c.IsBind(contract.AppKey) {
-		appPaths := WebgoConf.GetStringMapString("app.path")
-		appService := c.MustMake(contract.AppKey).(contract.App)
-		appService.LoadAppConfig(appPaths)
+	// 监控文件夹文件
+	watch, err := fsnotify.NewWatcher()
+	if err != nil {
+		return nil, err
 	}
+	//  监控 envFolder
+	err = watch.Add(envFolder)
+	if err != nil {
+		return nil, err
+	}
+	// 监听协程
+	go func() {
+		defer func() {
+			if err := recover(); err != nil {
+				fmt.Println(err)
+			}
+		}()
+		// 循环监听
+		for {
+			select {
+			case ev := <-watch.Events:
+				{
+					//判断事件发生的类型
+					// Create 创建
+					// Write 写入
+					// Remove 删除
+					// ev.Name -> 发生io事件的文件路径
+					path, _ := filepath.Abs(ev.Name)
+					index := strings.LastIndex(path, string(os.PathSeparator))
+					// 分解出文件夹名和文件名
+					folder := path[:index]
+					fileName := path[index+1:]
+					// io事件的类型 case
+					if ev.Op&fsnotify.Create == fsnotify.Create {
+						log.Println("创建文件 : ", ev.Name)
+						WebgoConf.loadConfigFile(folder, fileName)
+					}
+					// 更改了文件内容
+					if ev.Op&fsnotify.Write == fsnotify.Write {
+						log.Println("写入文件 : ", ev.Name)
+						WebgoConf.loadConfigFile(folder, fileName)
+					}
+					if ev.Op&fsnotify.Remove == fsnotify.Remove {
+						log.Println("删除文件 : ", ev.Name)
+						WebgoConf.removeConfigFile(folder, fileName)
+					}
+				}
+			case err := <-watch.Errors:
+				{
+					log.Println("error : ", err)
+					return
+				}
+			}
+		}
+	}()
+
 	return WebgoConf, nil
 }
 
+// replace 表示使用环境变量maps替换context中的env(xxx)的环境变量
 func replace(content []byte, maps map[string]string) []byte {
 	if maps == nil {
 		return content
 	}
 
+	// 直接使用ReplaceAll替换。这个性能可能不是最优，但是配置文件加载，频率是比较低的，可以接受
 	for key, val := range maps {
 		reKey := "env(" + key + ")"
 		content = bytes.ReplaceAll(content, []byte(reKey), []byte(val))
@@ -106,35 +193,40 @@ func replace(content []byte, maps map[string]string) []byte {
 	return content
 }
 
+// 查找某个路径的配置项
 func searchMap(source map[string]interface{}, path []string) interface{} {
 	if len(path) == 0 {
 		return source
 	}
 
+	// 判断是否有下个路径
 	next, ok := source[path[0]]
 	if ok {
-		// Fast path
+		// 判断这个路径是否为1
 		if len(path) == 1 {
 			return next
 		}
 
-		// Nested case
+		// 判断下一个路径的类型
 		switch next.(type) {
 		case map[interface{}]interface{}:
+			// 如果是interface的map，使用cast进行下value转换
 			return searchMap(cast.ToStringMap(next), path[1:])
 		case map[string]interface{}:
-			// Type assertion is safe here since it is only reached
-			// if the type of `next` is the same as the type being asserted
+			// 如果是map[string]，直接循环调用
 			return searchMap(next.(map[string]interface{}), path[1:])
 		default:
-			// got a value but nested key expected, return "nil" for not found
+			// 否则的话，返回nil
 			return nil
 		}
 	}
 	return nil
 }
 
+// 通过path来获取某个配置项
 func (conf *WebgoConfig) find(key string) interface{} {
+	conf.lock.RLock()
+	defer conf.lock.RUnlock()
 	return searchMap(conf.confMaps, strings.Split(key, conf.keyDelim))
 }
 
@@ -143,17 +235,17 @@ func (conf *WebgoConfig) IsExist(key string) bool {
 	return conf.find(key) != nil
 }
 
-// Get a new interface
+// Get 获取某个配置项
 func (conf *WebgoConfig) Get(key string) interface{} {
 	return conf.find(key)
 }
 
-// GetBool get bool type
+// GetBool 获取bool类型配置
 func (conf *WebgoConfig) GetBool(key string) bool {
 	return cast.ToBool(conf.find(key))
 }
 
-// GetInt get Int type
+// GetInt 获取int类型配置
 func (conf *WebgoConfig) GetInt(key string) int {
 	return cast.ToInt(conf.find(key))
 }
@@ -200,5 +292,13 @@ func (conf *WebgoConfig) GetStringMapStringSlice(key string) map[string][]string
 
 // Load a config to a struct, val should be an pointer
 func (conf *WebgoConfig) Load(key string, val interface{}) error {
-	return mapstructure.Decode(conf.find(key), val)
+	decoder, err := mapstructure.NewDecoder(&mapstructure.DecoderConfig{
+		TagName: "yaml",
+		Result:  val,
+	})
+	if err != nil {
+		return err
+	}
+
+	return decoder.Decode(conf.find(key))
 }

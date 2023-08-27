@@ -9,7 +9,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-// WebgoApp 代表hade框架的App实现
+// WebgoApp 代表Webgo框架的App实现
 type WebgoApp struct {
 	container  framework.Container // 服务容器
 	baseFolder string              // 基础路径
@@ -20,6 +20,11 @@ type WebgoApp struct {
 // Version 实现版本
 func (h WebgoApp) Version() string {
 	return "0.0.3"
+}
+
+// AppID 表示这个App的唯一ID
+func (h WebgoApp) AppID() string {
+	return h.appId
 }
 
 // BaseFolder 表示基础目录，可以代表开发场景的目录，也可以代表运行时候的目录
@@ -34,55 +39,80 @@ func (h WebgoApp) BaseFolder() string {
 }
 
 // ConfigFolder  表示配置文件地址
-func (h WebgoApp) ConfigFolder() string {
-	return filepath.Join(h.BaseFolder(), "config")
+func (app WebgoApp) ConfigFolder() string {
+	if val, ok := app.configMap["config_folder"]; ok {
+		return val
+	}
+	return filepath.Join(app.BaseFolder(), "config")
 }
 
 // LogFolder 表示日志存放地址
-func (h WebgoApp) LogFolder() string {
-	return filepath.Join(h.StorageFolder(), "log")
+func (app WebgoApp) LogFolder() string {
+	if val, ok := app.configMap["log_folder"]; ok {
+		return val
+	}
+	return filepath.Join(app.StorageFolder(), "log")
 }
 
-func (h WebgoApp) HttpFolder() string {
-	return filepath.Join(h.BaseFolder(), "http")
+func (app WebgoApp) HttpFolder() string {
+	if val, ok := app.configMap["http_folder"]; ok {
+		return val
+	}
+	return filepath.Join(app.BaseFolder(), "http")
 }
 
-func (h WebgoApp) ConsoleFolder() string {
-	return filepath.Join(h.BaseFolder(), "console")
+func (app WebgoApp) ConsoleFolder() string {
+	if val, ok := app.configMap["console_folder"]; ok {
+		return val
+	}
+	return filepath.Join(app.BaseFolder(), "console")
 }
 
-func (h WebgoApp) StorageFolder() string {
-	return filepath.Join(h.BaseFolder(), "storage")
+func (app WebgoApp) StorageFolder() string {
+	if val, ok := app.configMap["storage_folder"]; ok {
+		return val
+	}
+	return filepath.Join(app.BaseFolder(), "storage")
 }
 
 // ProviderFolder 定义业务自己的服务提供者地址
-func (h WebgoApp) ProviderFolder() string {
-	return filepath.Join(h.BaseFolder(), "provider")
+func (app WebgoApp) ProviderFolder() string {
+	if val, ok := app.configMap["provider_folder"]; ok {
+		return val
+	}
+	return filepath.Join(app.BaseFolder(), "provider")
 }
 
 // MiddlewareFolder 定义业务自己定义的中间件
-func (h WebgoApp) MiddlewareFolder() string {
-	return filepath.Join(h.HttpFolder(), "middleware")
+func (app WebgoApp) MiddlewareFolder() string {
+	if val, ok := app.configMap["middleware_folder"]; ok {
+		return val
+	}
+	return filepath.Join(app.HttpFolder(), "middleware")
 }
 
 // CommandFolder 定义业务定义的命令
-func (h WebgoApp) CommandFolder() string {
-	return filepath.Join(h.ConsoleFolder(), "command")
+func (app WebgoApp) CommandFolder() string {
+	if val, ok := app.configMap["command_folder"]; ok {
+		return val
+	}
+	return filepath.Join(app.ConsoleFolder(), "command")
 }
 
 // RuntimeFolder 定义业务的运行中间态信息
-func (h WebgoApp) RuntimeFolder() string {
-	return filepath.Join(h.StorageFolder(), "runtime")
+func (app WebgoApp) RuntimeFolder() string {
+	if val, ok := app.configMap["runtime_folder"]; ok {
+		return val
+	}
+	return filepath.Join(app.StorageFolder(), "runtime")
 }
 
 // TestFolder 定义测试需要的信息
-func (h WebgoApp) TestFolder() string {
-	return filepath.Join(h.BaseFolder(), "test")
-}
-
-// AppID 表示这个App的唯一ID
-func (h WebgoApp) AppID() string {
-	return h.appId
+func (app WebgoApp) TestFolder() string {
+	if val, ok := app.configMap["test_folder"]; ok {
+		return val
+	}
+	return filepath.Join(app.BaseFolder(), "test")
 }
 
 // NewWebgoApp 初始化WebgoApp

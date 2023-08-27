@@ -3,6 +3,7 @@ package config
 import (
 	"github.com/dll02/webgo/framework"
 	"github.com/dll02/webgo/framework/contract"
+	"path/filepath"
 )
 
 type WebgoConfigProvider struct {
@@ -34,7 +35,13 @@ func (provider *WebgoConfigProvider) IsDefer() bool {
 
 // Params define the necessary params for NewInstance
 func (provider *WebgoConfigProvider) Params(c framework.Container) []interface{} {
-	return []interface{}{provider.folder, provider.envMaps, provider.env, provider.c}
+	appService := c.MustMake(contract.AppKey).(contract.App)
+	envService := c.MustMake(contract.EnvKey).(contract.Env)
+	env := envService.AppEnv()
+	// 配置文件夹地址
+	configFolder := appService.ConfigFolder()
+	envFolder := filepath.Join(configFolder, env)
+	return []interface{}{c, envFolder, envService.All()}
 }
 
 /// Name define the name for this service

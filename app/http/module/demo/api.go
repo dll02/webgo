@@ -16,6 +16,7 @@ func Register(r *gin.Engine) error {
 
 	r.GET("/demo/demo", api.Demo)
 	r.GET("/demo/demo2", api.Demo2)
+	r.GET("/demo/demo3", api.Demo3)
 	r.POST("/demo/demo_post", api.DemoPost)
 	return nil
 }
@@ -32,13 +33,21 @@ func NewDemoApi() *DemoApi {
 // @Tags demo
 // @Success 200 array []UserDTO
 // @Router /demo/demo [get]
-func (api *DemoApi) Demo(c *gin.Context) {
+func (api *DemoApi) Demo3(c *gin.Context) {
 	appService := c.MustMake(contract.AppKey).(contract.App)
 	baseFolder := appService.BaseFolder()
 	//users := api.service.GetUsers()
 	//usersDTO := UserModelsToUserDTOs(users)
 	//c.JSON(200, usersDTO)
 	c.JSON(200, baseFolder)
+}
+
+func (api *DemoApi) Demo(c *gin.Context) {
+	// 获取password
+	configService := c.MustMake(contract.ConfigKey).(contract.Config)
+	password := configService.GetString("database.mysql.password")
+	// 打印出来
+	c.JSON(200, password)
 }
 
 // Demo godoc

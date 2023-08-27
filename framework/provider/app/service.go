@@ -14,6 +14,7 @@ type WebgoApp struct {
 	container  framework.Container // 服务容器
 	baseFolder string              // 基础路径
 	appId      string              // 表示当前这个app的唯一id, 可以用于分布式锁等
+	configMap  map[string]string   // 配置加载
 }
 
 // Version 实现版本
@@ -94,5 +95,13 @@ func NewWebgoApp(params ...interface{}) (interface{}, error) {
 	container := params[0].(framework.Container)
 	baseFolder := params[1].(string)
 	appId := uuid.New().String()
-	return &WebgoApp{baseFolder: baseFolder, container: container, appId: appId}, nil
+	configMap := map[string]string{}
+	return &WebgoApp{baseFolder: baseFolder, container: container, appId: appId, configMap: configMap}, nil
+}
+
+// LoadAppConfig 加载配置map
+func (app *WebgoApp) LoadAppConfig(kv map[string]string) {
+	for key, val := range kv {
+		app.configMap[key] = val
+	}
 }

@@ -1,7 +1,5 @@
 package framework
 
-
-
 import (
 	"fmt"
 	"sync"
@@ -64,11 +62,11 @@ func (webgo *WebgoContainer) PrintProviders() []string {
 // Bind 将服务容器和关键字做了绑定
 func (webgo *WebgoContainer) Bind(provider ServiceProvider) error {
 	webgo.lock.Lock()
-	defer webgo.lock.Unlock()
+
 	key := provider.Name()
 
 	webgo.providers[key] = provider
-
+	webgo.lock.Unlock()
 	// if provider is not defer
 	if provider.IsDefer() == false {
 		if err := provider.Boot(webgo); err != nil {
@@ -106,7 +104,7 @@ func (webgo *WebgoContainer) Make(key string) (interface{}, error) {
 func (webgo *WebgoContainer) MustMake(key string) interface{} {
 	serv, err := webgo.make(key, nil, false)
 	if err != nil {
-		panic(err)
+		panic("container not contain key " + key)
 	}
 	return serv
 }
@@ -134,7 +132,7 @@ func (webgo *WebgoContainer) newInstance(sp ServiceProvider, params []interface{
 // 真正的实例化一个服务
 func (webgo *WebgoContainer) make(key string, params []interface{}, forceNew bool) (interface{}, error) {
 	webgo.lock.RLock()
-	 
+	defer webgo.lock.RUnlock()
 	// 查询是否已经注册了这个服务提供者，如果没有注册，则返回错误
 	sp := webgo.findServiceProvider(key)
 	if sp == nil {
@@ -149,10 +147,7 @@ func (webgo *WebgoContainer) make(key string, params []interface{}, forceNew boo
 	if ins, ok := webgo.instances[key]; ok {
 		return ins, nil
 	}
-	webgo.lock.RUnlock()
 
-	webgo.lock.Lock()
-	defer webgo.lock.Unlock()
 	// 容器中还未实例化，则进行一次实例化
 	inst, err := webgo.newInstance(sp, params)
 	if err != nil {

@@ -17,9 +17,14 @@ require (
 require (
 	github.com/erikdubbelboer/gspt v0.0.0-20210805194459-ce36a5128377 // indirect
 	github.com/google/uuid v1.3.1 // indirect
+	github.com/gopherjs/gopherjs v1.17.2 // indirect
+	github.com/jtolds/gls v4.20.0+incompatible // indirect
 	github.com/kardianos/osext v0.0.0-20190222173326-2bc1f35cddc0 // indirect
+	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/sevlyar/go-daemon v0.1.6 // indirect
+	github.com/smarty/assertions v1.15.0 // indirect
+	github.com/smartystreets/goconvey v1.8.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 )
 

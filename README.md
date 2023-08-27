@@ -27,3 +27,16 @@ http://hade.funaio.cn/
 ## 开发模式
 
 在开发模式下进行前后端开发，极大提高了开发效率和开发体验
+
+# 功能测试
+
+## lesson-16: 配置服务
+运行单元测试: 
+* framework/provider/config/provider_test.go
+* framework/provider/config/service_test.go
+```shell
+go build .
+./webgo app start
+curl http://localhost:8888/demo/demo
+./webgo  config get "database.mysql
+```

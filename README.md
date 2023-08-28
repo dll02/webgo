@@ -65,7 +65,7 @@ npm create vue@latest
 npx: installed 1 in 1.204s
 
 Vue.js - The Progressive JavaScript Framework
-
+# 这里用了 ts 可以重新修改 vue 配置再覆盖前端部分 code
 ✔ Project name: … webgo-vue
 ✔ Add TypeScript? … No / Yes
 ✔ Add JSX Support? … No / Yes
@@ -87,3 +87,24 @@ go build .
 # 同时编译前后端
 ./webgo build all
 ```
+
+## lesson-19:20: 实时 dev调试模式 + 反向代理
+在 devConfig中设置调试监听端口,注意问题
+* 在webgo dev all 命令中启动前端时,要注意互相端口,host 之间能否访问成功
+* 只配置了本地测试功能
+```shell
+go build .
+# 如果代码里找不到 webgo 命令,要把 webgo 命令配进 path
+export PATH="$PATH:$CODE_PATH/webgo"
+./webgo dev all
+# 改变 前后端code,检查是否实时热更新请求
+curl  http://127.0.0.1:8070/
+curl  http://127.0.0.1:8070/demo/demo
+```
+
+
+
+
+
+
+

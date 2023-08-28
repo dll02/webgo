@@ -32,4 +32,4 @@ folder_to_ignore/
 # 在特定文件夹下忽略特定文件
 path/to/specific/file_to_ignore.txt
 
-goweb
+webgo

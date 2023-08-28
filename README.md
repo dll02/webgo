@@ -52,3 +52,38 @@ curl http://localhost:8888/demo/demo
 # 检查日志文件
 cat storage/log/coredemo.log.202*-*-*-*-*
 ```
+
+
+## lesson-18: 集成前端 Vue
+集成 vue 开发前端页面,实现前后端一体化开发功能,支持中小型业务需求,加快开发效率
+
+```shell
+cd webgo-vue
+# 16及以上版本
+node -v 
+npm create vue@latest
+npx: installed 1 in 1.204s
+
+Vue.js - The Progressive JavaScript Framework
+
+✔ Project name: … webgo-vue
+✔ Add TypeScript? … No / Yes
+✔ Add JSX Support? … No / Yes
+✔ Add Vue Router for Single Page Application development? … No / Yes
+✔ Add Pinia for state management? … No / Yes
+✔ Add Vitest for Unit Testing? … No / Yes
+✔ Add an End-to-End Testing Solution? › Nightwatch
+✔ Add ESLint for code quality? … No / Yes
+✔ Add Prettier for code formatting? … No / Yes
+
+  cd webgo-vue
+
+# copy 所有文件 除了 node_modules 到 webgo 目录下
+cd webgo 
+npm install
+npm run format
+npm run dev
+go build .
+# 同时编译前后端
+./webgo build all
+```

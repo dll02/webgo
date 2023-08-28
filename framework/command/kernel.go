@@ -12,4 +12,10 @@ func AddKernelCommands(root *cobra.Command) {
 	root.AddCommand(initCronCommand())
 	// config 命令
 	root.AddCommand(initConfigCommand())
+	// build 命令
+	root.AddCommand(initBuildCommand())
+	// go build
+	root.AddCommand(goCommand)
+	// npm build
+	root.AddCommand(npmCommand)
 }

@@ -38,5 +38,17 @@ http://hade.funaio.cn/
 go build .
 ./webgo app start
 curl http://localhost:8888/demo/demo
-./webgo  config get "database.mysql
+# 手动修改 database.mysql.password 的值观察是否热修改
+./webgo  config get "database.mysql"
+```
+
+## lesson-17: 日志服务
+运行单元测试:
+* framework/provider/id/provier_test.go
+```shell
+go build .
+./webgo app start
+curl http://localhost:8888/demo/demo
+# 检查日志文件
+cat storage/log/coredemo.log.202*-*-*-*-*
 ```

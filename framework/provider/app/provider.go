@@ -10,7 +10,7 @@ type WebgoAppProvider struct {
 	BaseFolder string
 }
 
-// Register 注册HadeApp方法
+// Register 注册WebgoApp方法
 func (h *WebgoAppProvider) Register(container framework.Container) framework.NewInstance {
 	return NewWebgoApp
 }

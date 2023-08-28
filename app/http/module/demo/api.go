@@ -36,6 +36,7 @@ func NewDemoApi() *DemoApi {
 func (api *DemoApi) Demo3(c *gin.Context) {
 	appService := c.MustMake(contract.AppKey).(contract.App)
 	baseFolder := appService.BaseFolder()
+
 	//users := api.service.GetUsers()
 	//usersDTO := UserModelsToUserDTOs(users)
 	//c.JSON(200, usersDTO)
@@ -47,6 +48,11 @@ func (api *DemoApi) Demo(c *gin.Context) {
 	configService := c.MustMake(contract.ConfigKey).(contract.Config)
 	password := configService.GetString("database.mysql.password")
 	// 打印出来
+	logger := c.MustMakeLog()
+	logger.Info(c, "demo test error", map[string]interface{}{
+		"api":  "demo/demo",
+		"user": "jianfengye",
+	})
 	c.JSON(200, password)
 }
 

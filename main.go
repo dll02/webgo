@@ -9,7 +9,10 @@ import (
 	"github.com/dll02/webgo/framework/provider/config"
 	"github.com/dll02/webgo/framework/provider/distributed"
 	"github.com/dll02/webgo/framework/provider/env"
+	"github.com/dll02/webgo/framework/provider/id"
 	"github.com/dll02/webgo/framework/provider/kernel"
+	"github.com/dll02/webgo/framework/provider/log"
+	"github.com/dll02/webgo/framework/provider/trace"
 )
 
 func main() {
@@ -23,6 +26,9 @@ func main() {
 	container.Bind(&distributed.LocalDistributedProvider{})
 	container.Bind(&env.WebgoEnvProvider{})
 	container.Bind(&config.WebgoConfigProvider{})
+	container.Bind(&id.WebgoIDProvider{})
+	container.Bind(&trace.WebgoTraceProvider{})
+	container.Bind(&log.WebgoLogServiceProvider{})
 
 	// 将HTTP引擎初始化,并且作为服务提供者绑定到服务容器中
 	if engine, err := http.NewHttpEngine(); err == nil {

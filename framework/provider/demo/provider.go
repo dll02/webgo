@@ -10,7 +10,7 @@ import (
 type DemoServiceProvider struct {
 }
 
-// Name方法直接将服务对应的字符串凭证返回，在这个例子中就是“hade.demo"
+// Name方法直接将服务对应的字符串凭证返回，在这个例子中就是“webgo.demo"
 func (sp *DemoServiceProvider) Name() string {
 	return contract.DemoKey
 }

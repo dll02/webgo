@@ -170,3 +170,11 @@ hade框架版本： v1.0.9
 ./webgo app start
 curl http://localhost:8888/swagger/index.html
 ```
+
+## lesson-24: app 命令完善[start stop restart state]
+注意代码包依赖平台,window 和M1 跑不起来,需要环境支持
+```shell
+ go build .
+./webgo app start  --daemon=true
+curl http://localhost:8888/swagger/index.html
+```

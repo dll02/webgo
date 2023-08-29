@@ -157,6 +157,16 @@ hade框架版本： v1.0.9
 
 ```
 
-
-
-
+## lesson-23: 自动生成 swagger 文件和swagger-ui 服务
+通过注释生成 swagger.json 文件
+* 如果无法通过err := gen.New().Build(conf)生成对应的 swagger 文件,注意检查安装的包依赖
+* 迁移gin-swagger时注意 gin 已经是本地修改过的 gin
+> 需要设置模块swaggerFiles: 为本地的模块 github.com/dll02/webgo/framework/middleware/gin-swagger/swaggerFiles
+```shell
+# 生成 swagger
+ go build .
+./webgo swagger gen
+# 运行 swagger
+./webgo app start
+curl http://localhost:8888/swagger/index.html
+```

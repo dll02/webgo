@@ -58,14 +58,14 @@ func (app WebgoApp) HttpFolder() string {
 	if val, ok := app.configMap["http_folder"]; ok {
 		return val
 	}
-	return filepath.Join(app.BaseFolder(), "http")
+	return filepath.Join(app.AppFolder(), "http")
 }
 
 func (app WebgoApp) ConsoleFolder() string {
 	if val, ok := app.configMap["console_folder"]; ok {
 		return val
 	}
-	return filepath.Join(app.BaseFolder(), "console")
+	return filepath.Join(app.AppFolder(), "console")
 }
 
 func (app WebgoApp) StorageFolder() string {
@@ -80,7 +80,7 @@ func (app WebgoApp) ProviderFolder() string {
 	if val, ok := app.configMap["provider_folder"]; ok {
 		return val
 	}
-	return filepath.Join(app.BaseFolder(), "provider")
+	return filepath.Join(app.AppFolder(), "provider")
 }
 
 // MiddlewareFolder 定义业务自己定义的中间件

@@ -15,6 +15,7 @@ type App interface {
 	ConfigFolder() string
 	// LogFolder 定义了日志所在路径
 	LogFolder() string
+
 	// ProviderFolder 定义业务自己的服务提供者地址
 	ProviderFolder() string
 	// MiddlewareFolder 定义业务自己定义的中间件

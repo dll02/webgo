@@ -5,7 +5,7 @@ import (
 	"github.com/robfig/cron/v3"
 )
 
-func main() {
+func main4() {
 	// 创建一个cron实例
 	c := cron.New()
 

@@ -45,15 +45,15 @@ func (api *DemoApi) Demo3(c *gin.Context) {
 
 func (api *DemoApi) Demo(c *gin.Context) {
 	// 获取password
-	configService := c.MustMake(contract.ConfigKey).(contract.Config)
-	password := configService.GetString("database.mysql.password")
+	//configService := c.MustMake(contract.ConfigKey).(contract.Config)
+	//password := configService.GetString("database.mysql.password")
 	// 打印出来
 	logger := c.MustMakeLog()
 	logger.Info(c, "demo test error", map[string]interface{}{
 		"api":  "demo/demo",
 		"user": "jianfengye",
 	})
-	c.JSON(200, password)
+	c.JSON(200, "password 123")
 }
 
 // Demo godoc

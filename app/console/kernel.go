@@ -2,6 +2,7 @@ package console
 
 import (
 	"github.com/dll02/webgo/app/console/command/demo"
+	"github.com/dll02/webgo/app/console/command/test"
 	"github.com/dll02/webgo/framework"
 	"time"
 
@@ -43,6 +44,7 @@ func RunCommand(container framework.Container) error {
 func AddAppCommand(rootCmd *cobra.Command) {
 	//  demo 例子
 	rootCmd.AddCommand(demo.InitFoo())
+	rootCmd.AddCommand(test.InitTest())
 	// corn 例子
 	//rootCmd.AddCronCommand("* * * * * *", demo.FooCornCommand)
 	// 启动一个分布式任务调度，调度的服务名称为init_func_for_test，每个节点每5s调用一次Foo命令，抢占到了调度任务的节点将抢占锁持续挂载2s才释放

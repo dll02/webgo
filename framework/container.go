@@ -157,3 +157,13 @@ func (webgo *WebgoContainer) make(key string, params []interface{}, forceNew boo
 	webgo.instances[key] = inst
 	return inst, nil
 }
+
+// NameList 列出容器中所有服务提供者的字符串凭证
+func (webgo *WebgoContainer) NameList() []string {
+	ret := []string{}
+	for _, provider := range webgo.providers {
+		name := provider.Name()
+		ret = append(ret, name)
+	}
+	return ret
+}

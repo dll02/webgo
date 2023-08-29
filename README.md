@@ -102,6 +102,24 @@ curl  http://127.0.0.1:8070/
 curl  http://127.0.0.1:8070/demo/demo
 ```
 
+## lesson-21: 实现自动化命令
+开发实现自动化命令,避免重复劳动
+* 自动生成模版服务: provider
+* 自动生成业务模版命令: command
+* 自动生成或迁移gin的中间件: middleware
+```shell
+go build .
+# 文件夹已生成
+mkdir app/http/middleware
+mkdir app/console/command
+mkdir app/provider
+# 执行命令测试相应的模版代码是否生成
+./webgo middleware migrate
+ # git@github.com:gin-contrib/cors.git
+ > cors
+./webgo command new  
+./webgo provider new
+```
 
 
 

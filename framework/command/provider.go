@@ -95,7 +95,7 @@ var providerCreateCommand = &cobra.Command{
 
 		app := container.MustMake(contract.AppKey).(contract.App)
 
-		pFolder := app.ProviderFolder()
+		pFolder := app.Webgo()
 		subFolders, err := util.SubDir(pFolder)
 		if err != nil {
 			return err

@@ -121,7 +121,41 @@ mkdir app/provider
 ./webgo provider new
 ```
 
+## lesson-22: 实现自动生成项目脚手架
 
+```shell
+go build .
+# 文件夹已生成
+go build .
+➜  webgo git:(main) ✗ ./webgo new                                                                                                                 
+? 请输入目录名称： hade_web
+? 请输入模块名称(go.mod中的module, 默认为文件夹名称)： github.com/hade_web
+? 请输入版本名称(参考 https://github.com/gohade/hade/releases，默认为最新版本)： 
+====================================================
+开始进行创建应用操作
+创建目录： /Users/***/go/src/webgo/hade_web
+应用名称： github.com/hade_web
+hade框架版本： v1.0.9
+创建临时目录 /Users/***/go/src/webgo/template-hade-v1.0.9-1693286683
+下载zip包到template.zip
+解压zip包
+删除临时文件夹 /Users/***/go/src/webgo/template-hade-v1.0.9-1693286683
+删除.git目录
+删除framework目录
+更新文件:/Users/***/go/src/webgo/hade_web/app/grpc/kernel.go
+更新文件:/Users/***/go/src/webgo/hade_web/app/grpc/service/helloworld/service.go
+更新文件:/Users/***/go/src/webgo/hade_web/app/http/module/demo/api.go
+更新文件:/Users/***/go/src/webgo/hade_web/app/http/module/demo/mapper.go
+更新文件:/Users/***/go/src/webgo/hade_web/app/http/route.go
+更新文件:/Users/***/go/src/webgo/hade_web/app/http/swagger.go
+更新文件:/Users/***/go/src/webgo/hade_web/docs/guide/app.md
+更新文件:/Users/***/go/src/webgo/hade_web/docs/guide/grpc.md
+更新文件:/Users/***/go/src/webgo/hade_web/go.mod
+更新文件:/Users/***/go/src/webgo/hade_web/main.go
+创建应用结束
+目录： /Users/***/go/src/webgo/hade_web
+
+```
 
 
 

@@ -75,8 +75,8 @@ func (app WebgoApp) StorageFolder() string {
 	return filepath.Join(app.BaseFolder(), "storage")
 }
 
-// ProviderFolder 定义业务自己的服务提供者地址
-func (app WebgoApp) ProviderFolder() string {
+// Webgo 定义业务自己的服务提供者地址
+func (app WebgoApp) Webgo() string {
 	if val, ok := app.configMap["provider_folder"]; ok {
 		return val
 	}

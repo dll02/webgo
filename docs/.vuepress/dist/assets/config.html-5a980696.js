@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-08933432","path":"/provider/config.html","title":"hade:config","lang":"zh-CN","frontmatter":{},"headers":[],"git":{"updatedTime":null,"contributors":[]},"filePathRelative":"provider/config.md"}');export{t as data};

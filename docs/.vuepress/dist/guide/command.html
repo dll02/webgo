@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="generator" content="VuePress 2.0.0-beta.67">
+    <style>
+      :root {
+        --c-bg: #fff;
+      }
+      html.dark {
+        --c-bg: #22272e;
+      }
+      html, body {
+        background-color: var(--c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem('vuepress-color-scheme');
+			const systemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+			if (userMode === 'dark' || (userMode !== 'light' && systemDarkMode)) {
+				document.documentElement.classList.toggle('dark', true);
+			}
+    </script>
+    <title>命令 | 你好， VuePress ！</title><meta name="description" content="这是我的第一个 VuePress 站点">
+    <link rel="preload" href="/assets/style-8a38cc2d.css" as="style"><link rel="stylesheet" href="/assets/style-8a38cc2d.css">
+    <link rel="modulepreload" href="/assets/app-2d690129.js"><link rel="modulepreload" href="/assets/command.html-efbc4902.js"><link rel="modulepreload" href="/assets/command.html-5939ca7c.js"><link rel="prefetch" href="/assets/index.html-813e2324.js" as="script"><link rel="prefetch" href="/assets/index.html-b8705e31.js" as="script"><link rel="prefetch" href="/assets/app.html-98a70b2f.js" as="script"><link rel="prefetch" href="/assets/build.html-fcb80032.js" as="script"><link rel="prefetch" href="/assets/cron.html-1f508088.js" as="script"><link rel="prefetch" href="/assets/dev.html-bb0d6a16.js" as="script"><link rel="prefetch" href="/assets/env.html-0e0ef342.js" as="script"><link rel="prefetch" href="/assets/install.html-742d4a11.js" as="script"><link rel="prefetch" href="/assets/introduce.html-ca34760d.js" as="script"><link rel="prefetch" href="/assets/middleware.html-6d89c171.js" as="script"><link rel="prefetch" href="/assets/provider.html-ac117925.js" as="script"><link rel="prefetch" href="/assets/structure.html-4f327701.js" as="script"><link rel="prefetch" href="/assets/swagger.html-d25088ba.js" as="script"><link rel="prefetch" href="/assets/todo.html-77b4b180.js" as="script"><link rel="prefetch" href="/assets/index.html-6094e511.js" as="script"><link rel="prefetch" href="/assets/app.html-a30f63fd.js" as="script"><link rel="prefetch" href="/assets/config.html-5a980696.js" as="script"><link rel="prefetch" href="/assets/env.html-c661f759.js" as="script"><link rel="prefetch" href="/assets/log.html-6e07dd2d.js" as="script"><link rel="prefetch" href="/assets/404.html-f9875e7b.js" as="script"><link rel="prefetch" href="/assets/index.html-77a28d93.js" as="script"><link rel="prefetch" href="/assets/index.html-6985c8c7.js" as="script"><link rel="prefetch" href="/assets/app.html-2c4c5072.js" as="script"><link rel="prefetch" href="/assets/build.html-e4a6adb4.js" as="script"><link rel="prefetch" href="/assets/cron.html-a76540a8.js" as="script"><link rel="prefetch" href="/assets/dev.html-c51ba593.js" as="script"><link rel="prefetch" href="/assets/env.html-c988744d.js" as="script"><link rel="prefetch" href="/assets/install.html-37d9da85.js" as="script"><link rel="prefetch" href="/assets/introduce.html-4d0bc677.js" as="script"><link rel="prefetch" href="/assets/middleware.html-99d60fe1.js" as="script"><link rel="prefetch" href="/assets/provider.html-f15f1118.js" as="script"><link rel="prefetch" href="/assets/structure.html-edeef759.js" as="script"><link rel="prefetch" href="/assets/swagger.html-c623f9f3.js" as="script"><link rel="prefetch" href="/assets/todo.html-c8d483fc.js" as="script"><link rel="prefetch" href="/assets/index.html-c38e9e1d.js" as="script"><link rel="prefetch" href="/assets/app.html-595e403e.js" as="script"><link rel="prefetch" href="/assets/config.html-731ff78d.js" as="script"><link rel="prefetch" href="/assets/env.html-ebda3614.js" as="script"><link rel="prefetch" href="/assets/log.html-621fd854.js" as="script"><link rel="prefetch" href="/assets/404.html-b01cc44d.js" as="script">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="theme-container"><!--[--><header class="navbar"><div class="toggle-sidebar-button" title="toggle sidebar" aria-expanded="false" role="button" tabindex="0"><div class="icon" aria-hidden="true"><span></span><span></span><span></span></div></div><span><a href="/" class=""><!----><span class="site-name">你好， VuePress ！</span></a></span><div class="navbar-items-wrapper" style=""><!--[--><!--]--><!----><!--[--><!--]--><button class="toggle-color-mode-button" title="toggle color mode"><svg style="" class="icon" focusable="false" viewBox="0 0 32 32"><path d="M16 12.005a4 4 0 1 1-4 4a4.005 4.005 0 0 1 4-4m0-2a6 6 0 1 0 6 6a6 6 0 0 0-6-6z" fill="currentColor"></path><path d="M5.394 6.813l1.414-1.415l3.506 3.506L8.9 10.318z" fill="currentColor"></path><path d="M2 15.005h5v2H2z" fill="currentColor"></path><path d="M5.394 25.197L8.9 21.691l1.414 1.415l-3.506 3.505z" fill="currentColor"></path><path d="M15 25.005h2v5h-2z" fill="currentColor"></path><path d="M21.687 23.106l1.414-1.415l3.506 3.506l-1.414 1.414z" fill="currentColor"></path><path d="M25 15.005h5v2h-5z" fill="currentColor"></path><path d="M21.687 8.904l3.506-3.506l1.414 1.415l-3.506 3.505z" fill="currentColor"></path><path d="M15 2.005h2v5h-2z" fill="currentColor"></path></svg><svg style="display:none;" class="icon" focusable="false" viewBox="0 0 32 32"><path d="M13.502 5.414a15.075 15.075 0 0 0 11.594 18.194a11.113 11.113 0 0 1-7.975 3.39c-.138 0-.278.005-.418 0a11.094 11.094 0 0 1-3.2-21.584M14.98 3a1.002 1.002 0 0 0-.175.016a13.096 13.096 0 0 0 1.825 25.981c.164.006.328 0 .49 0a13.072 13.072 0 0 0 10.703-5.555a1.01 1.01 0 0 0-.783-1.565A13.08 13.08 0 0 1 15.89 4.38A1.015 1.015 0 0 0 14.98 3z" fill="currentColor"></path></svg></button><!----></div></header><!--]--><div class="sidebar-mask"></div><!--[--><aside class="sidebar"><!----><!--[--><!--]--><ul class="sidebar-items"><!--[--><li><p tabindex="0" class="sidebar-item sidebar-heading">命令 <!----></p><ul style="" class="sidebar-item-children"><!--[--><li><a aria-current="page" href="/guide/command.html#指南" class="router-link-active router-link-exact-active sidebar-item" aria-label="指南"><!--[--><!--]--> 指南 <!--[--><!--]--></a><!----></li><li><a aria-current="page" href="/guide/command.html#创建" class="router-link-active router-link-exact-active sidebar-item" aria-label="创建"><!--[--><!--]--> 创建 <!--[--><!--]--></a><!----></li><li><a aria-current="page" href="/guide/command.html#自定义" class="router-link-active router-link-exact-active sidebar-item" aria-label="自定义"><!--[--><!--]--> 自定义 <!--[--><!--]--></a><!----></li><li><a aria-current="page" href="/guide/command.html#挂载" class="router-link-active router-link-exact-active sidebar-item" aria-label="挂载"><!--[--><!--]--> 挂载 <!--[--><!--]--></a><!----></li><!--]--></ul></li><!--]--></ul><!--[--><!--]--></aside><!--]--><!--[--><main class="page"><!--[--><!--]--><div class="theme-default-content"><!--[--><!--]--><div><h1 id="命令" tabindex="-1"><a class="header-anchor" href="#命令" aria-hidden="true">#</a> 命令</h1><h2 id="指南" tabindex="-1"><a class="header-anchor" href="#指南" aria-hidden="true">#</a> 指南</h2><p>hade 允许自定义命令，挂载到 hade 上。并且提供了<code>./hade command</code> 系列命令。</p><div class="language-text line-numbers-mode" data-ext="text"><pre class="language-text"><code>[~/Documents/workspace/hade_workspace/demo5]$ ./hade command
+all about commond
+
+Usage:
+  hade command [flags]
+  hade command [command]
+
+Available Commands:
+  list        show all command list
+  new         create a command
+
+Flags:
+  -h, --help   help for command
+
+Use &quot;hade command [command] --help&quot; for more information about a command.
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul><li>list // 列出当前所有已经挂载的命令列表</li><li>new // 创建一个新的自定义命令</li></ul><h2 id="创建" tabindex="-1"><a class="header-anchor" href="#创建" aria-hidden="true">#</a> 创建</h2><p>创建一个新命令，可以使用 <code>./hade command new</code></p><p>这是一个交互式的命令行工具。</p><div class="language-text line-numbers-mode" data-ext="text"><pre class="language-text"><code>[~/Documents/workspace/hade_workspace/demo5]$ ./hade command new
+create a new command...
+? please input command name: test
+? please input file name(default: command name):
+create new command success，file path: /Users/Documents/workspace/hade_workspace/demo5/app/console/command/test.go
+please remember add command to console/kernel.go
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>创建完成之后，会在应用的 app/console/command/ 目录下创建一个新的文件。</p><h2 id="自定义" tabindex="-1"><a class="header-anchor" href="#自定义" aria-hidden="true">#</a> 自定义</h2><p>hade 中的命令使用的是 cobra 库。 https://github.com/spf13/cobra</p><div class="language-text line-numbers-mode" data-ext="text"><pre class="language-text"><code>package command
+
+import (
+        &quot;fmt&quot;
+
+        &quot;github.com/gohade/hade/framework/cobra&quot;
+        &quot;github.com/gohade/hade/framework/command/util&quot;
+)
+
+var TestCommand = &amp;cobra.Command{
+        Use:   &quot;test&quot;,
+        Short: &quot;test&quot;,
+        RunE: func(c *cobra.Command, args []string) error {
+                container := util.GetContainer(c.Root())
+                fmt.Println(container)
+                return nil
+        },
+}
+
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>基本上，我们要求实现</p><ul><li>Use // 命令行的关键字</li><li>Short // 命令行的简短说明</li><li>RunE // 命令行实际运行的程序</li></ul><p>更多配置和参数可以参考 <a href="https://github.com/spf13/cobra" target="_blank" rel="noopener noreferrer">cobra 的 github 页面<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></p><h2 id="挂载" tabindex="-1"><a class="header-anchor" href="#挂载" aria-hidden="true">#</a> 挂载</h2><p>编写完自定义命令后，请记得挂载到 console/kernel.go 中。</p><div class="language-golang line-numbers-mode" data-ext="golang"><pre class="language-golang"><code>func RunCommand(container framework.Container) error {
+	var rootCmd = &amp;cobra.Command{
+		Use:   &quot;hade&quot;,
+		Short: &quot;main&quot;,
+		Long:  &quot;hade commands&quot;,
+	}
+
+	ctx := commandUtil.RegiestContainer(container, rootCmd)
+
+	hadeCommand.AddKernelCommands(rootCmd)
+
+    rootCmd.AddCommand(command.DemoCommand)
+
+	return rootCmd.ExecuteContext(ctx)
+}
+
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div><!--[--><!--]--></div><footer class="page-meta"><!----><!----><!----></footer><!----><!--[--><!--]--></main><!--]--></div><!----><!--]--></div>
+    <script type="module" src="/assets/app-2d690129.js" defer></script>
+  </body>
+</html>

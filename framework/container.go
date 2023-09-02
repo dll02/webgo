@@ -67,7 +67,7 @@ func (webgo *WebgoContainer) Bind(provider ServiceProvider) error {
 
 	webgo.providers[key] = provider
 	webgo.lock.Unlock()
-	// if provider is not defer
+	// if .provider2 is not defer
 	if provider.IsDefer() == false {
 		if err := provider.Boot(webgo); err != nil {
 			return err

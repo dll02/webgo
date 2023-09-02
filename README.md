@@ -112,13 +112,13 @@ go build .
 # 文件夹已生成
 mkdir app/http/middleware
 mkdir app/console/command
-mkdir app/provider
+mkdir app/.provider2
 # 执行命令测试相应的模版代码是否生成
 ./webgo middleware migrate
  # git@github.com:gin-contrib/cors.git
  > cors
 ./webgo command new  
-./webgo provider new
+./webgo .provider2 new
 ```
 
 ## lesson-22: 实现自动生成项目脚手架
@@ -148,8 +148,8 @@ hade框架版本： v1.0.9
 更新文件:/Users/***/go/src/webgo/hade_web/app/http/module/demo/mapper.go
 更新文件:/Users/***/go/src/webgo/hade_web/app/http/route.go
 更新文件:/Users/***/go/src/webgo/hade_web/app/http/swagger.go
-更新文件:/Users/***/go/src/webgo/hade_web/docs/guide/app.md
-更新文件:/Users/***/go/src/webgo/hade_web/docs/guide/grpc.md
+更新文件:/Users/***/go/src/webgo/hade_web/docs/.guide1/app.md
+更新文件:/Users/***/go/src/webgo/hade_web/docs/.guide1/grpc.md
 更新文件:/Users/***/go/src/webgo/hade_web/go.mod
 更新文件:/Users/***/go/src/webgo/hade_web/main.go
 创建应用结束
@@ -206,4 +206,19 @@ curl http://localhost:8888/demo/cache/redis
  ./webgo deploy all
  ./webgo deploy rollback 20211110233354 backend 
  curl http://localhost:8888/swagger/index.html
+```
+
+## lesson-29: 通过 vuepress.v2 集成技术文档功能
+因为之前集成的前端开发 vue3,不兼容vuepress.v1
+* 需要相关配置查阅文档: https://v2.vuepress.vuejs.org/zh/guide/ 
+* package.json 添加对应的编译打包运行 命令
+```shell
+# 配置环境
+npm install -D vuepress@next
+#添加运行命令
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+# 启动   vuepress
+npm run docs:build
+npm run docs:dev
 ```

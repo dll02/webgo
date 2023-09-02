@@ -186,3 +186,11 @@ curl http://localhost:8888/swagger/index.html
 ./webgo app start   
 curl http://localhost:8888/demo/orm
 ```
+
+## lesson-27: 增加缓存协议服务
+支持内存缓存和 redis 缓存服务
+```shell
+ go build .
+./webgo app start   
+curl http://localhost:8888/demo/cache/redis
+```

@@ -7,6 +7,7 @@ import (
 	"github.com/dll02/webgo/app/provider/user"
 	"github.com/dll02/webgo/framework"
 	"github.com/dll02/webgo/framework/provider/app"
+	"github.com/dll02/webgo/framework/provider/cache"
 	"github.com/dll02/webgo/framework/provider/config"
 	"github.com/dll02/webgo/framework/provider/distributed"
 	"github.com/dll02/webgo/framework/provider/env"
@@ -14,6 +15,7 @@ import (
 	"github.com/dll02/webgo/framework/provider/kernel"
 	"github.com/dll02/webgo/framework/provider/log"
 	"github.com/dll02/webgo/framework/provider/orm"
+	"github.com/dll02/webgo/framework/provider/redis"
 	"github.com/dll02/webgo/framework/provider/trace"
 )
 
@@ -31,6 +33,8 @@ func main() {
 	container.Bind(&trace.WebgoTraceProvider{})
 	container.Bind(&log.WebgoLogServiceProvider{})
 	container.Bind(&orm.GormProvider{})
+	container.Bind(&redis.RedisProvider{})
+	container.Bind(&cache.WebgoCacheProvider{})
 
 	// 绑定 app 自定义服务
 	container.Bind(&student.SubjectProvider{})

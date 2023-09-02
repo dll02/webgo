@@ -83,7 +83,7 @@ var newCommand = &cobra.Command{
 			// 获取hade的版本
 			client := github.NewClient(nil)
 			prompt := &survey.Input{
-				Message: "请输入版本名称(参考 https://github.com/gohade/hade/releases，默认为最新版本)：",
+				Message: "请输入版本名称(参考 https://github.com/dll02/webgo/releases，默认为最新版本)：",
 			}
 			err := survey.AskOne(prompt, &version)
 			if err != nil {
@@ -93,7 +93,7 @@ var newCommand = &cobra.Command{
 				// 确认版本是否正确
 				release, _, err = client.Repositories.GetReleaseByTag(context.Background(), "gohade", "hade", version)
 				if err != nil || release == nil {
-					fmt.Println("版本不存在，创建应用失败，请参考 https://github.com/gohade/hade/releases")
+					fmt.Println("版本不存在，创建应用失败，请参考 https://github.com/dll02/webgo/releases")
 					return nil
 				}
 			}
@@ -164,8 +164,8 @@ var newCommand = &cobra.Command{
 
 			if path == filepath.Join(folder, "go.mod") {
 				fmt.Println("更新文件:" + path)
-				c = bytes.ReplaceAll(c, []byte("module github.com/gohade/hade"), []byte("module "+mod))
-				c = bytes.ReplaceAll(c, []byte("require ("), []byte("require (\n\tgithub.com/gohade/hade "+version))
+				c = bytes.ReplaceAll(c, []byte("module github.com/dll02/webgo"), []byte("module "+mod))
+				c = bytes.ReplaceAll(c, []byte("require ("), []byte("require (\n\tgithub.com/dll02/webgo "+version))
 				err = ioutil.WriteFile(path, c, 0644)
 				if err != nil {
 					return err
@@ -173,10 +173,10 @@ var newCommand = &cobra.Command{
 				return nil
 			}
 
-			isContain := bytes.Contains(c, []byte("github.com/gohade/hade/app"))
+			isContain := bytes.Contains(c, []byte("github.com/dll02/webgo/app"))
 			if isContain {
 				fmt.Println("更新文件:" + path)
-				c = bytes.ReplaceAll(c, []byte("github.com/gohade/hade/app"), []byte(mod+"/app"))
+				c = bytes.ReplaceAll(c, []byte("github.com/dll02/webgo/app"), []byte(mod+"/app"))
 				err = ioutil.WriteFile(path, c, 0644)
 				if err != nil {
 					return err

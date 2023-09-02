@@ -190,7 +190,20 @@ curl http://localhost:8888/demo/orm
 ## lesson-27: 增加缓存协议服务
 支持内存缓存和 redis 缓存服务
 ```shell
+docker run -d -p 6379:6379 --name redis_container redis
  go build .
 ./webgo app start   
 curl http://localhost:8888/demo/cache/redis
+```
+
+## lesson-28: 通过 ssh和 ftp 实现部署到远端的功能
+小型快速部署的情况下推荐使用,正式环境使用 docker k8s部署
+* 注意配置服务器的账户密码和操作目录的权限
+```shell
+ go build .
+ ./webgo deploy frontend
+ ./webgo deploy backend
+ ./webgo deploy all
+ ./webgo deploy rollback 20211110233354 backend 
+ curl http://localhost:8888/swagger/index.html
 ```

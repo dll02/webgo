@@ -1,4 +1,4 @@
-import{_ as e,o as n,c as i,d as t}from"./app-2d690129.js";const l={},d=t(`<h1 id="hade-log" tabindex="-1"><a class="header-anchor" href="#hade-log" aria-hidden="true">#</a> hade:log</h1><p>提供日志记录相关操作</p><div class="language-golang line-numbers-mode" data-ext="golang"><pre class="language-golang"><code>type Log interface {
+import{_ as e,o as n,c as i,d as t}from"./app-2d690129.js";const l={},d=t(`<h1 id="webgo-log" tabindex="-1"><a class="header-anchor" href="#webgo-log" aria-hidden="true">#</a> webgo:log</h1><p>提供日志记录相关操作</p><div class="language-golang line-numbers-mode" data-ext="golang"><pre class="language-golang"><code>type Log interface {
 	// Panic will call panic(fields) for debug
 	Panic(ctx context.Context, msg string, fields []interface{})
 	// Fatal will add fatal record which contains msg and fields

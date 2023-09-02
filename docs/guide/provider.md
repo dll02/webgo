@@ -2,7 +2,7 @@
 
 ## 指南
 
-hade框架使用ServiceProvider机制来满足协议，通过service Provder提供某个协议服务的具体实现。这样如果开发者对具体的实现协议的服务类的具体实现不满意，则可以很方便的通过切换具体协议的Service Provider来进行具体服务的切换。
+webgo框架使用ServiceProvider机制来满足协议，通过service Provder提供某个协议服务的具体实现。这样如果开发者对具体的实现协议的服务类的具体实现不满意，则可以很方便的通过切换具体协议的Service Provider来进行具体服务的切换。
 
 一个ServiceProvider是一个单独的文件夹，它包含服务提供和服务实现。具体可以参考framework/provider/demo
 
@@ -12,14 +12,14 @@ hade框架使用ServiceProvider机制来满足协议，通过service Provder提�
 
 ## 创建
 
-我们可以使用命令 `./hade provider new` 来创建一个新的service provider
+我们可以使用命令 `./webgo provider new` 来创建一个新的service provider
 
 ```
-[~/Documents/workspace/hade_workspace/demo5]$ ./hade provider new
+[~/Documents/workspace/webgo_workspace/demo5]$ ./webgo provider new
 create a provider
 ? please input provider name test
 ? please input provider folder(default: provider name):
-create provider success, folder path: /Users/Documents/workspace/hade_workspace/demo5/app/provider/test
+create provider success, folder path: /Users/Documents/workspace/webgo_workspace/demo5/app/provider/test
 please remember add provider to kernel
 ```
 
@@ -31,7 +31,7 @@ please remember add provider to kernel
 
 ### contract.go
 
-contract.go 定义了这个服务提供方提供的协议接口。hade 框架任务，作为一个业务的服务提供者，定义一个好的协议是最重要的事情。
+contract.go 定义了这个服务提供方提供的协议接口。webgo 框架任务，作为一个业务的服务提供者，定义一个好的协议是最重要的事情。
 
 所以 contract.go 中定义了一个 Service 接口，在其中定义各种方法，包含输入参数和返回参数。
 
@@ -60,7 +60,7 @@ provider.go 提供服务适配的实现，实现一个Provider必须实现对应
 package demo
 
 import (
-	"github.com/gohade/hade/framework"
+	"github.com/dll02/webgo/framework"
 )
 
 type DemoProvider struct {
@@ -105,7 +105,7 @@ service.go提供具体的实现，它至少需要提供一个实例化的方法 
 ```
 package demo
 
-import "github.com/gohade/hade/framework"
+import "github.com/dll02/webgo/framework"
 
 type Service struct {
 	container framework.Container
@@ -133,9 +133,9 @@ func (s *Service) GetAllStudent() []Student {
 
 ## 注入
 
-hade的路由，controller的定义是选择基于gin框架进行扩展的。所有的gin框架的路由，参数获取，验证，context都和gin框架是相同的。唯一不同的是gin的全局路由gin.Engine实现了hade的容器结构，可以对gin.Engine进行服务提供的注入，且可以从context中获取具体的服务。
+webgo的路由，controller的定义是选择基于gin框架进行扩展的。所有的gin框架的路由，参数获取，验证，context都和gin框架是相同的。唯一不同的是gin的全局路由gin.Engine实现了webgo的容器结构，可以对gin.Engine进行服务提供的注入，且可以从context中获取具体的服务。
 
-hade提供两种服务注入的方法：
+webgo提供两种服务注入的方法：
 * Bind: 将一个ServiceProvider绑定到容器中，可以控制其是否是单例
 * Singleton: 将一个单例ServiceProvider绑定到容器中
 
@@ -162,7 +162,7 @@ func Register(r *gin.Engine) error {
 
 ## 获取
 
-hade提供了三种服务获取的方法：
+webgo提供了三种服务获取的方法：
 * Make: 根据一个Key获取服务，获取不到获取报错
 * MustMake: 根据一个Key获取服务，获取不到返回空
 * MakeNew: 根据一个Key获取服务，每次获取都实例化，对应的ServiceProvider必须是以非单例形式注入
@@ -218,20 +218,20 @@ func NewService(params ...interface{}) (interface{}, error) {
 
 ```
 
-## hade provider
+## webgo provider
 
-hade 框架默认自带了一些服务提供者，提供基础的服务接口协议，可以通过 `./hade provider list` 来获取已经安装的服务提供者。
+webgo 框架默认自带了一些服务提供者，提供基础的服务接口协议，可以通过 `./webgo provider list` 来获取已经安装的服务提供者。
 
 ```
-[~/Documents/workspace/hade_workspace/demo5]$ ./hade provider list
-hade:app
-hade:env
-hade:config
-hade:log
-hade:ssh
-hade:kernel
+[~/Documents/workspace/webgo_workspace/demo5]$ ./webgo provider list
+webgo:app
+webgo:env
+webgo:config
+webgo:log
+webgo:ssh
+webgo:kernel
 ```
 
-hade 框架自带的服务提供者的 key 是以 `hade:` 开头。目的为的是与自定义服务提供者的 key 区别开。
+webgo 框架自带的服务提供者的 key 是以 `webgo:` 开头。目的为的是与自定义服务提供者的 key 区别开。
 
-hade 框架自带的服务提供者具体定义的协议可以参考：[provider](/provider/)
+webgo 框架自带的服务提供者具体定义的协议可以参考：[provider](/provider/)

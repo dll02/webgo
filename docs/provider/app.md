@@ -1,4 +1,4 @@
-# hade:app
+# webgo:app
 
 提供基础的 app 框架目录结构
 
@@ -6,7 +6,7 @@
 package contract
 
 // AppKey is the key in container
-const AppKey = "hade:app"
+const AppKey = "webgo:app"
 
 // App define application structure
 type App interface {

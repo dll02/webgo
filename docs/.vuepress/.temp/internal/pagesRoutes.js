@@ -15,9 +15,9 @@ export const pagesRoutes = [
   ["v-6961447b","/guide/swagger.html",{"title":"swagger"},[":md"]],
   ["v-4a6824e7","/guide/todo.html",{"title":"待做事项"},[":md"]],
   ["v-445de4f6","/provider/",{"title":"服务提供者"},["/provider/README.md"]],
-  ["v-40e5abdd","/provider/app.html",{"title":"hade:app"},[":md"]],
-  ["v-08933432","/provider/config.html",{"title":"hade:config"},[":md"]],
-  ["v-fe4a06de","/provider/env.html",{"title":"hade:env"},[":md"]],
-  ["v-7350c09a","/provider/log.html",{"title":"hade:log"},[":md"]],
+  ["v-40e5abdd","/provider/app.html",{"title":"webgo:app"},[":md"]],
+  ["v-08933432","/provider/config.html",{"title":"webgo:config"},[":md"]],
+  ["v-fe4a06de","/provider/env.html",{"title":"webgo:env"},[":md"]],
+  ["v-7350c09a","/provider/log.html",{"title":"webgo:log"},[":md"]],
   ["v-3706649a","/404.html",{"title":""},[]],
 ]

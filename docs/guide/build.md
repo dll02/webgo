@@ -11,35 +11,35 @@
 - 同时编译
 
 ```
-[~/Documents/workspace/hade_workspace/demo5]$ ./hade build
-build hade command
+[~/Documents/workspace/webgo_workspace/demo5]$ ./webgo build
+build webgo command
 
 Usage:
-  hade build [flags]
-  hade build [command]
+  webgo build [flags]
+  webgo build [command]
 
 Available Commands:
   all         build fronend and backend
   backend     build backend use go
   frontend    build frontend use npm
-  self        build ./hade command
+  self        build ./webgo command
 
 Flags:
   -h, --help   help for build
 
-Use "hade build [command] --help" for more information about a command.
+Use "webgo build [command] --help" for more information about a command.
 ```
 
 ## 编译前端
 
 要求当前编译机器安装 npm 软件，并且当前项目已经运行了 npm install，安装完成前端依赖。
 
-运行命令 `./hade build frontend`
+运行命令 `./webgo build frontend`
 
 ```
-[~/Documents/workspace/hade_workspace/demo5]$ ./hade build frontend
+[~/Documents/workspace/webgo_workspace/demo5]$ ./webgo build frontend
 
-> hade@0.1.0 build /Users/Documents/workspace/hade_workspace/demo5
+> webgo@0.1.0 build /Users/Documents/workspace/webgo_workspace/demo5
 > vue-cli-service build
 
 
@@ -70,25 +70,25 @@ front end build success
 
 要求当前编译机器安装 go 软件，版本 > 1.3。
 
-运行命令： `./hade build backend`
+运行命令： `./webgo build backend`
 
 ```
-[~/Documents/workspace/hade_workspace/demo5]$ ./hade build backend
-build success please run ./hade direct
+[~/Documents/workspace/webgo_workspace/demo5]$ ./webgo build backend
+build success please run ./webgo direct
 ```
 
-在项目根目录下就看到生成的可执行文件 hade。 后续可以通过 ./hade 直接运行。
+在项目根目录下就看到生成的可执行文件 webgo。 后续可以通过 ./webgo 直接运行。
 
 ## 自编译
 
-在项目根目录下，hade 可以通过 hade 命令编译出 hade 命令自己。通过命令 `hade build self`
+在项目根目录下，webgo 可以通过 webgo 命令编译出 webgo 命令自己。通过命令 `webgo build self`
 
 ```
-[~/Documents/workspace/hade_workspace/demo5]$ hade build self
-build success please run ./hade direct
+[~/Documents/workspace/webgo_workspace/demo5]$ webgo build self
+build success please run ./webgo direct
 ```
 
-在项目根目录下就看到生成的可执行文件 hade。 后续可以通过 ./hade 直接运行。
+在项目根目录下就看到生成的可执行文件 webgo。 后续可以通过 ./webgo 直接运行。
 
 ::: tip
 其实自编译和后端编译是同样效果，但是为了命令语义化，增加了自编译的命令。
@@ -96,4 +96,4 @@ build success please run ./hade direct
 
 ## 同时编译
 
-顾名思义，同时编译前端和后端，命令为 `./hade build all`
+顾名思义，同时编译前端和后端，命令为 `./webgo build all`

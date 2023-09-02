@@ -1,4 +1,4 @@
-<template><div><h1 id="hade-env" tabindex="-1"><a class="header-anchor" href="#hade-env" aria-hidden="true">#</a> hade:env</h1>
+<template><div><h1 id="webgo-env" tabindex="-1"><a class="header-anchor" href="#webgo-env" aria-hidden="true">#</a> webgo:env</h1>
 <p>提供环境变量相关方法</p>
 <div class="language-golang line-numbers-mode" data-ext="golang"><pre v-pre class="language-golang"><code>package contract
 
@@ -11,7 +11,7 @@ const (
 	EnvDevelopment = &quot;development&quot;
 
 	// EnvKey is the key in container
-	EnvKey = &quot;hade:env&quot;
+	EnvKey = &quot;webgo:env&quot;
 )
 
 // Env define golang run enviornment

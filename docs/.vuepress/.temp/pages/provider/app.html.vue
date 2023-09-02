@@ -1,9 +1,9 @@
-<template><div><h1 id="hade-app" tabindex="-1"><a class="header-anchor" href="#hade-app" aria-hidden="true">#</a> hade:app</h1>
+<template><div><h1 id="webgo-app" tabindex="-1"><a class="header-anchor" href="#webgo-app" aria-hidden="true">#</a> webgo:app</h1>
 <p>提供基础的 app 框架目录结构</p>
 <div class="language-golang line-numbers-mode" data-ext="golang"><pre v-pre class="language-golang"><code>package contract
 
 // AppKey is the key in container
-const AppKey = &quot;hade:app&quot;
+const AppKey = &quot;webgo:app&quot;
 
 // App define application structure
 type App interface {

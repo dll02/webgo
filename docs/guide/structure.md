@@ -1,12 +1,12 @@
 # 目录结构
 
-hade 框架不仅仅是一个类库，也是一个定义了开发模式和目录结构的框架。 hade 希望所有使用这个框架的开发人员遵照统一的项目结构进行开发。
+webgo 框架不仅仅是一个类库，也是一个定义了开发模式和目录结构的框架。 webgo 希望所有使用这个框架的开发人员遵照统一的项目结构进行开发。
 
 ## 默认目录结构
 默认创建的项目结构为：
 
 ```
-[~/Documents/workspace/hade_workspace/demo5]$ tree
+[~/Documents/workspace/webgo_workspace/demo5]$ tree
 .
 ├── README.md
 ├── app // 服务端应用地址
@@ -107,13 +107,13 @@ hade 框架不仅仅是一个类库，也是一个定义了开发模式和目录
 ![20200916111454](http://tuchuang.funaio.cn/md/20200916111454.png)
 
 
-第一步：创建当前业务的 provider。可以使用命令行 `./hade provider new` 来创建。
+第一步：创建当前业务的 provider。可以使用命令行 `./webgo provider new` 来创建。
 ```
-[~/Documents/workspace/hade_workspace/demo5]$ ./hade provider new
+[~/Documents/workspace/webgo_workspace/demo5]$ ./webgo provider new
 create a provider
 ? please input provider name car
 ? please input provider folder(default: provider name):
-create provider success, folder path: /Users/xxx/Documents/workspace/hade_workspace/demo5/app/provider/car
+create provider success, folder path: /Users/xxx/Documents/workspace/webgo_workspace/demo5/app/provider/car
 please remember add provider to kernel
 ```
 
@@ -140,7 +140,7 @@ type Student struct {
 ```
 package demo
 
-import "github.com/gohade/hade/framework"
+import "github.com/dll02/webgo/framework"
 
 type Service struct {
 	container framework.Container

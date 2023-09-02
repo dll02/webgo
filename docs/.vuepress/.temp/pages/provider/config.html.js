@@ -1,4 +1,4 @@
-export const data = JSON.parse("{\"key\":\"v-08933432\",\"path\":\"/provider/config.html\",\"title\":\"hade:config\",\"lang\":\"zh-CN\",\"frontmatter\":{},\"headers\":[],\"git\":{\"updatedTime\":null,\"contributors\":[]},\"filePathRelative\":\"provider/config.md\"}")
+export const data = JSON.parse("{\"key\":\"v-08933432\",\"path\":\"/provider/config.html\",\"title\":\"webgo:config\",\"lang\":\"zh-CN\",\"frontmatter\":{},\"headers\":[],\"git\":{\"updatedTime\":null,\"contributors\":[]},\"filePathRelative\":\"provider/config.md\"}")
 
 if (import.meta.webpackHot) {
   import.meta.webpackHot.accept()

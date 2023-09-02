@@ -1,4 +1,4 @@
-<template><div><h1 id="hade-config" tabindex="-1"><a class="header-anchor" href="#hade-config" aria-hidden="true">#</a> hade:config</h1>
+<template><div><h1 id="webgo-config" tabindex="-1"><a class="header-anchor" href="#webgo-config" aria-hidden="true">#</a> webgo:config</h1>
 <p>提供基础的配置文件获取方法</p>
 <div class="language-golang line-numbers-mode" data-ext="golang"><pre v-pre class="language-golang"><code>package contract
 
@@ -6,7 +6,7 @@ import &quot;time&quot;
 
 const (
 	// ConfigKey is config key in container
-	ConfigKey = &quot;hade:config&quot;
+	ConfigKey = &quot;webgo:config&quot;
 )
 
 // Config define setting from files, it support key contains dov。

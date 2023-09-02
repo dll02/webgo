@@ -2,7 +2,7 @@
 
 ## 设置
 
-hade 支持使用应用默认下的隐藏文件 `.env` 来配置各个机器不同的环境变量。
+webgo 支持使用应用默认下的隐藏文件 `.env` 来配置各个机器不同的环境变量。
 
 ```
 APP_ENV=development
@@ -26,7 +26,7 @@ mysql:
 
 ## 应用环境
 
-hade 启动应用的默认应用环境为 development。
+webgo 启动应用的默认应用环境为 development。
 
 你可以通过设置 .env 文件中的 APP_ENV 设置应用环境。
 
@@ -45,9 +45,9 @@ url := configService.GetString("app.url")
 
 查找文件为：`config/development/app.yaml`
 
-通过命令`./hade env`也可以获取当前应用环境：
+通过命令`./webgo env`也可以获取当前应用环境：
 
 ```
-[~/Documents/workspace/hade_workspace/demo5]$ ./hade env
+[~/Documents/workspace/webgo_workspace/demo5]$ ./webgo env
 environment: development
 ```

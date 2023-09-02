@@ -1,8 +1,8 @@
 <template><div><h1 id="目录结构" tabindex="-1"><a class="header-anchor" href="#目录结构" aria-hidden="true">#</a> 目录结构</h1>
-<p>hade 框架不仅仅是一个类库，也是一个定义了开发模式和目录结构的框架。 hade 希望所有使用这个框架的开发人员遵照统一的项目结构进行开发。</p>
+<p>webgo 框架不仅仅是一个类库，也是一个定义了开发模式和目录结构的框架。 webgo 希望所有使用这个框架的开发人员遵照统一的项目结构进行开发。</p>
 <h2 id="默认目录结构" tabindex="-1"><a class="header-anchor" href="#默认目录结构" aria-hidden="true">#</a> 默认目录结构</h2>
 <p>默认创建的项目结构为：</p>
-<div class="language-text line-numbers-mode" data-ext="text"><pre v-pre class="language-text"><code>[~/Documents/workspace/hade_workspace/demo5]$ tree
+<div class="language-text line-numbers-mode" data-ext="text"><pre v-pre class="language-text"><code>[~/Documents/workspace/webgo_workspace/demo5]$ tree
 .
 ├── README.md
 ├── app // 服务端应用地址
@@ -85,12 +85,12 @@
 <p>强烈建议使用这种开发模型</p>
 </div>
 <p><img src="http://tuchuang.funaio.cn/md/20200916111454.png" alt="20200916111454"></p>
-<p>第一步：创建当前业务的 provider。可以使用命令行 <code v-pre>./hade provider new</code> 来创建。</p>
-<div class="language-text line-numbers-mode" data-ext="text"><pre v-pre class="language-text"><code>[~/Documents/workspace/hade_workspace/demo5]$ ./hade provider new
+<p>第一步：创建当前业务的 provider。可以使用命令行 <code v-pre>./webgo provider new</code> 来创建。</p>
+<div class="language-text line-numbers-mode" data-ext="text"><pre v-pre class="language-text"><code>[~/Documents/workspace/webgo_workspace/demo5]$ ./webgo provider new
 create a provider
 ? please input provider name car
 ? please input provider folder(default: provider name):
-create provider success, folder path: /Users/xxx/Documents/workspace/hade_workspace/demo5/app/provider/car
+create provider success, folder path: /Users/xxx/Documents/workspace/webgo_workspace/demo5/app/provider/car
 please remember add provider to kernel
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>定义好 provider 的协议</p>
 <div class="language-text line-numbers-mode" data-ext="text"><pre v-pre class="language-text"><code>package demo
@@ -109,7 +109,7 @@ type Student struct {
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>实现对应协议：</p>
 <div class="language-text line-numbers-mode" data-ext="text"><pre v-pre class="language-text"><code>package demo
 
-import "github.com/gohade/hade/framework"
+import "github.com/dll02/webgo/framework"
 
 type Service struct {
 	container framework.Container

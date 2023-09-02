@@ -1,4 +1,4 @@
-# hade:log
+# webgo:log
 
 提供日志记录相关操作
 

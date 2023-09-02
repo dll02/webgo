@@ -1,4 +1,4 @@
-# hade:env
+# webgo:env
 
 提供环境变量相关方法
 
@@ -14,7 +14,7 @@ const (
 	EnvDevelopment = "development"
 
 	// EnvKey is the key in container
-	EnvKey = "hade:env"
+	EnvKey = "webgo:env"
 )
 
 // Env define golang run enviornment

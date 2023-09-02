@@ -13,8 +13,8 @@ description: app 运行命令
 package http
 
 import (
-	"github.com/gohade/hade/app/http/controller/demo"
-	"github.com/gohade/hade/framework/gin"
+	"github.com/dll02/webgo/app/http/controller/demo"
+	"github.com/dll02/webgo/framework/gin"
 )
 
 func Routes(r *gin.Engine) {
@@ -27,12 +27,12 @@ func Routes(r *gin.Engine) {
 运行相关的命令为 app。
 
 ```
-[~/Documents/workspace/hade_workspace/demo5]$ ./hade app
+[~/Documents/workspace/webgo_workspace/demo5]$ ./webgo app
 start app serve
 
 Usage:
-  hade app [flags]
-  hade app [command]
+  webgo app [flags]
+  webgo app [command]
 
 Available Commands:
   restart     restart app server
@@ -43,19 +43,19 @@ Available Commands:
 Flags:
   -h, --help   help for app
 
-Use "hade app [command] --help" for more information about a command.
+Use "webgo app [command] --help" for more information about a command.
 ```
 
 ## 启动
 
-可以使用 `./hade app start` 启动一个应用。
+可以使用 `./webgo app start` 启动一个应用。
 
-也可以使用 `./hade app start -d` 使用 deamon 模式启动一个应用。应用名称为 `hade app`
+也可以使用 `./webgo app start -d` 使用 deamon 模式启动一个应用。应用名称为 `webgo app`
 
 ```
-[~/Documents/workspace/hade_workspace/demo5]$ ./hade app start -d
+[~/Documents/workspace/webgo_workspace/demo5]$ ./webgo app start -d
 app serve started
-log file: /Users/Documents/workspace/hade_workspace/demo5/storage/log/app.log
+log file: /Users/Documents/workspace/webgo_workspace/demo5/storage/log/app.log
 ```
 
 app 应用的输出记录在 `/storage/log/app.log`
@@ -64,16 +64,16 @@ app 应用的输出记录在 `/storage/log/app.log`
 
 ## 状态
 
-当使用 deamon 模式启动的时候，需要查看当前应用是否有启动，如果启动了，进程号是多少，可以使用命令 `./hade app state`
+当使用 deamon 模式启动的时候，需要查看当前应用是否有启动，如果启动了，进程号是多少，可以使用命令 `./webgo app state`
 
 ```
-[~/Documents/workspace/hade_workspace/demo5]$ ./hade app state
+[~/Documents/workspace/webgo_workspace/demo5]$ ./webgo app state
 app server started, pid: 28170
 ```
 
 ## 重启
 
-当使用 deamon 模式启动的时候，需要重启应用，可以使用命令 `./hade app restart`
+当使用 deamon 模式启动的时候，需要重启应用，可以使用命令 `./webgo app restart`
 
 ::: tip
 如果程序还未启动，调用 restart 命令，效果和 start 命令一样，deamon 模式启动应用
@@ -81,4 +81,4 @@ app server started, pid: 28170
 
 ## 停止
 
-当使用 deamon 模式启动的时候，需要关闭应用，可以使用命令 `./hade app stop`
+当使用 deamon 模式启动的时候，需要关闭应用，可以使用命令 `./webgo app stop`

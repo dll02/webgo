@@ -1,4 +1,4 @@
-<template><div><h1 id="hade-log" tabindex="-1"><a class="header-anchor" href="#hade-log" aria-hidden="true">#</a> hade:log</h1>
+<template><div><h1 id="webgo-log" tabindex="-1"><a class="header-anchor" href="#webgo-log" aria-hidden="true">#</a> webgo:log</h1>
 <p>提供日志记录相关操作</p>
 <div class="language-golang line-numbers-mode" data-ext="golang"><pre v-pre class="language-golang"><code>type Log interface {
 	// Panic will call panic(fields) for debug

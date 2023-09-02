@@ -3,36 +3,36 @@
 ---
 ## 可执行文件
 
-我们有两种方式来获取可执行的hade文件，第一种是直接下载对应操作系统的hade文件，另外一种是下载源码自己编译
+我们有两种方式来获取可执行的webgo文件，第一种是直接下载对应操作系统的webgo文件，另外一种是下载源码自己编译
 
 ### 直接下载
 
 下载地址：
 xxx
 
-将生成的可执行文件 hade 放到 $PATH 目录中：
-`cp hade /usr/local/bin/`
+将生成的可执行文件 webgo 放到 $PATH 目录中：
+`cp webgo /usr/local/bin/`
 
 ### 源码编译
 
-下载 git 地址：`git@github.com/jianfengye/hade:cloud/hade.git` 到目录 hade
+下载 git 地址：`git@github.com/jianfengye/webgo:cloud/webgo.git` 到目录 webgo
 
-在 hade 目录中运行命令 `go run main.go build self` 
+在 webgo 目录中运行命令 `go run main.go build self` 
 
-将生成的可执行文件 hade 放到 $PATH 目录中：
-`cp hade /usr/local/bin/`
+将生成的可执行文件 webgo 放到 $PATH 目录中：
+`cp webgo /usr/local/bin/`
 
 
 ## 初始化项目
 
-使用命令 `hade new [app]` 在当前目录创建子项目
+使用命令 `webgo new [app]` 在当前目录创建子项目
 
 ```
-[~/Documents/workspace/hade_workspace]$ hade new --help
+[~/Documents/workspace/webgo_workspace]$ webgo new --help
 create a new app
 
 Usage:
-  hade new [app] [flags]
+  webgo new [app] [flags]
 
 Aliases:
   new, create, init
@@ -48,30 +48,30 @@ Flags:
 接下来，可以通过命令 `go run main.go` 看到如下信息：
 
 ```
-[~/Documents/workspace/hade_workspace/demo5]$ go run main.go
-hade commands
+[~/Documents/workspace/webgo_workspace/demo5]$ go run main.go
+webgo commands
 
 Usage:
-  hade [command]
+  webgo [command]
 
 Available Commands:
   app         start app serve
-  build       build hade command
+  build       build webgo command
   command     all about commond
   cron        about cron command
   deploy      deploy app by ssh
   dev         dev mode
   env         get current environment
   help        get help info
-  middleware  hade middleware
+  middleware  webgo middleware
   new         create a new app
-  provider    about hade service provider
+  provider    about webgo service provider
   swagger     swagger operator
 
 Flags:
-  -h, --help   help for hade
+  -h, --help   help for webgo
 
-Use "hade [command] --help" for more information about a command.
+Use "webgo [command] --help" for more information about a command.
 ```
 
 至此，项目安装成功。

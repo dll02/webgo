@@ -2,17 +2,17 @@
 
 ## 命令
 
-hade 框架自带调试模式，不管是前端还是后端，都可以启动调试模式，边修改代码，边编译运行服务。
+webgo 框架自带调试模式，不管是前端还是后端，都可以启动调试模式，边修改代码，边编译运行服务。
 
-对应的命令为 `./hade dev`
+对应的命令为 `./webgo dev`
 
 ```
-[~/Documents/workspace/hade_workspace/demo5]$ ./hade dev
+[~/Documents/workspace/webgo_workspace/demo5]$ ./webgo dev
 dev mode
 
 Usage:
-  hade dev [flags]
-  hade dev [command]
+  webgo dev [flags]
+  webgo dev [command]
 
 Available Commands:
   all         dev mode from both frontend and backend
@@ -22,7 +22,7 @@ Available Commands:
 Flags:
   -h, --help   help for dev
 
-Use "hade dev [command] --help" for more information about a command.
+Use "webgo dev [command] --help" for more information about a command.
 ```
 
 - 调试前端
@@ -31,14 +31,14 @@ Use "hade dev [command] --help" for more information about a command.
 
 ## 调试前端
 
-使用命令 `./hade dev frontend`
+使用命令 `./webgo dev frontend`
 
 要求当前编译机器安装 npm 软件，并且当前项目已经运行了 npm install，安装完成前端依赖。
 
 ```
-[~/Documents/workspace/hade_workspace/demo5]$ ./hade dev frontend
+[~/Documents/workspace/webgo_workspace/demo5]$ ./webgo dev frontend
 
-> hade@0.1.0 serve /Users/Documents/workspace/hade_workspace/demo5
+> webgo@0.1.0 serve /Users/Documents/workspace/webgo_workspace/demo5
 > vue-cli-service serve
 
  INFO  Starting development server...
@@ -59,14 +59,14 @@ Use "hade dev [command] --help" for more information about a command.
 
 ## 调试后端
 
-使用命令 `./hade dev backend`
+使用命令 `./webgo dev backend`
 
 要求当前编译机器安装 go 软件，版本 > 1.3。
 
 ```
-[~/Documents/workspace/hade_workspace/demo5]$  ./hade dev backend
-./hade dev backend
-build success please run ./hade direct
+[~/Documents/workspace/webgo_workspace/demo5]$  ./webgo dev backend
+./webgo dev backend
+build success please run ./webgo direct
 backend server: http://127.0.0.1:15060
 proxy backend server: http://0.0.0.0:8073
 [PID] 29034
@@ -80,7 +80,7 @@ app serve url: http://127.0.0.1:15060
 ::: tip
 后端调试默认是最后一次操作后3秒启动后端编译启动命令。
 
-hade 也允许通过配置修改这个等待时间。
+webgo 也允许通过配置修改这个等待时间。
 
 可以配置 `development/app.yaml` 里面的 `dev_fresh` 参数修改这个等待时间。
 :::
@@ -90,13 +90,13 @@ hade 也允许通过配置修改这个等待时间。
 也可以选择同时调试，这个时候会同时运行调试前端和调试后端的程序
 
 ```
-[~/Documents/workspace/hade_workspace/demo5]$ ./hade dev all
+[~/Documents/workspace/webgo_workspace/demo5]$ ./webgo dev all
 
-> hade@0.1.0 serve /Users/Documents/workspace/hade_workspace/demo5
+> webgo@0.1.0 serve /Users/Documents/workspace/webgo_workspace/demo5
 > vue-cli-service serve
 
  INFO  Starting development server...
-build success please run ./hade direct
+build success please run ./webgo direct
 backend server: http://127.0.0.1:19866
 proxy backend server: http://0.0.0.0:8073
 proxy frontend server: http://0.0.0.0:8073/dist/#/

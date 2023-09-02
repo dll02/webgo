@@ -1,4 +1,4 @@
-# hade:config
+# webgo:config
 
 提供基础的配置文件获取方法
 
@@ -9,7 +9,7 @@ import "time"
 
 const (
 	// ConfigKey is config key in container
-	ConfigKey = "hade:config"
+	ConfigKey = "webgo:config"
 )
 
 // Config define setting from files, it support key contains dov。

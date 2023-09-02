@@ -13,6 +13,7 @@ import (
 	"github.com/dll02/webgo/framework/provider/id"
 	"github.com/dll02/webgo/framework/provider/kernel"
 	"github.com/dll02/webgo/framework/provider/log"
+	"github.com/dll02/webgo/framework/provider/orm"
 	"github.com/dll02/webgo/framework/provider/trace"
 )
 
@@ -29,6 +30,7 @@ func main() {
 	container.Bind(&id.WebgoIDProvider{})
 	container.Bind(&trace.WebgoTraceProvider{})
 	container.Bind(&log.WebgoLogServiceProvider{})
+	container.Bind(&orm.GormProvider{})
 
 	// 绑定 app 自定义服务
 	container.Bind(&student.SubjectProvider{})

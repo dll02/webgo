@@ -7,7 +7,7 @@ import (
 	"text/template"
 )
 
-func main() {
+func main6() {
 	// First we create a FuncMap with which to register the function.
 	funcMap := template.FuncMap{
 		// The name "title" is what the function will be called in the template text.

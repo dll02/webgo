@@ -178,3 +178,11 @@ curl http://localhost:8888/swagger/index.html
 ./webgo app start  --daemon=true
 curl http://localhost:8888/swagger/index.html
 ```
+
+## lesson-25: 集成orm 包 gorm
+支持本地调试时,注释了 gsft 包
+```shell
+ go build .
+./webgo app start   
+curl http://localhost:8888/demo/orm
+```

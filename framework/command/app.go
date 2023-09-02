@@ -7,7 +7,7 @@ import (
 	"github.com/dll02/webgo/framework/cobra"
 	"github.com/dll02/webgo/framework/contract"
 	"github.com/dll02/webgo/framework/util"
-	"github.com/erikdubbelboer/gspt"
+	//"github.com/erikdubbelboer/gspt"
 	"github.com/pkg/errors"
 	"github.com/sevlyar/go-daemon"
 	"io/ioutil"
@@ -157,7 +157,7 @@ var appStartCommand = &cobra.Command{
 			defer cntxt.Release()
 			// 子进程执行真正的app启动操作
 			fmt.Println("deamon started")
-			gspt.SetProcTitle("webgo app")
+			//gspt.SetProcTitle("webgo app")
 			if err := startAppServe(server, container); err != nil {
 				fmt.Println(err)
 			}
@@ -171,7 +171,7 @@ var appStartCommand = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		gspt.SetProcTitle("webgo app")
+		//gspt.SetProcTitle("webgo app")
 
 		fmt.Println("app serve url:", appAddress)
 		if err := startAppServe(server, container); err != nil {

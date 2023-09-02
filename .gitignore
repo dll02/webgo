@@ -33,3 +33,4 @@ folder_to_ignore/
 path/to/specific/file_to_ignore.txt
 
 webgo
+storage/

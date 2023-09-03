@@ -1,11 +1,11 @@
 // Package http API.
-// @title hade
-// @version 1.1
-// @description.markdown api.md
+// @title webgocast
+// @version 1.0
+// @description webg论坛
 // @termsOfService https://github.com/swaggo/swag
 
 // @contact.name dailingling
-// @contact.email dailingling_0@163.com
+// @contact.email dailingling
 
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
@@ -20,7 +20,6 @@
 // @name Authorization
 
 // @x-extension-openapi {"example": "value on a json format"}
-
 package http
 
 import (

@@ -10,7 +10,7 @@ import (
 )
 
 // ORMKey 代表 ORM的服务
-const ORMKey = "hade:orm"
+const ORMKey = "webgo:orm"
 
 // ORMService 表示传入的参数
 type ORMService interface {

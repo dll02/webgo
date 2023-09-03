@@ -112,13 +112,13 @@ go build .
 # 文件夹已生成
 mkdir app/http/middleware
 mkdir app/console/command
-mkdir app/.provider2
+mkdir app/provider
 # 执行命令测试相应的模版代码是否生成
 ./webgo middleware migrate
  # git@github.com:gin-contrib/cors.git
  > cors
 ./webgo command new  
-./webgo .provider2 new
+./webgo provider new
 ```
 
 ## lesson-22: 实现自动生成项目脚手架
@@ -130,7 +130,7 @@ go build .
 ➜  webgo git:(main) ✗ ./webgo new                                                                                                                 
 ? 请输入目录名称： hade_web
 ? 请输入模块名称(go.mod中的module, 默认为文件夹名称)： github.com/hade_web
-? 请输入版本名称(参考 https://github.com/gohade/hade/releases，默认为最新版本)： 
+? 请输入版本名称(参考 https://github.com/dll02/webgo/releases，默认为最新版本)： 
 ====================================================
 开始进行创建应用操作
 创建目录： /Users/***/go/src/webgo/hade_web
@@ -221,4 +221,12 @@ npm install -D vuepress@next
 # 启动   vuepress
 npm run docs:build
 npm run docs:dev
+```
+
+## lesson-30: 开发 bbs 的 qa 和 user 模块接口
+本地环境原因 删除了原本的 vue code,前端部分需要重新集成
+* todo: 完善前端 part
+```shell
+go build .
+./webgo app start
 ```

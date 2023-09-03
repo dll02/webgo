@@ -1,1 +1,0 @@
-export const data = JSON.parse("{\"key\":\"v-4cf114bc\",\"path\":\"/.provider2/log.html\",\"title\":\"webgo:log\",\"lang\":\"zh-CN\",\"frontmatter\":{},\"headers\":[],\"git\":{\"updatedTime\":null,\"contributors\":[]},\"filePathRelative\":\".provider2/log.md\"}")

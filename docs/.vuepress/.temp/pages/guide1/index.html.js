@@ -1,1 +1,0 @@
-export const data = JSON.parse("{\"key\":\"v-ff7635fe\",\"path\":\"/.guide1/\",\"title\":\"\",\"lang\":\"zh-CN\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"webgo\",\"slug\":\"webgo\",\"link\":\"#webgo\",\"children\":[]}],\"git\":{\"updatedTime\":null,\"contributors\":[]},\"filePathRelative\":\".guide1/README.md\"}")

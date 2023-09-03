@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/dll02/webgo/app/console"
 	"github.com/dll02/webgo/app/http"
-	"github.com/dll02/webgo/app/provider/student"
+	"github.com/dll02/webgo/app/provider/qa"
 	"github.com/dll02/webgo/app/provider/user"
 	"github.com/dll02/webgo/framework"
 	"github.com/dll02/webgo/framework/provider/app"
@@ -37,7 +37,7 @@ func main() {
 	container.Bind(&cache.WebgoCacheProvider{})
 
 	// 绑定 app 自定义服务
-	container.Bind(&student.SubjectProvider{})
+	container.Bind(&qa.QaProvider{})
 	container.Bind(&user.UserProvider{})
 
 	// 将HTTP引擎初始化,并且作为服务提供者绑定到服务容器中

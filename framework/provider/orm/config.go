@@ -45,6 +45,14 @@ func WithGormConfig(gormConfig *gorm.Config) contract.DBOption {
 	}
 }
 
+// WithGormConfig 表示自行配置Gorm的配置信息
+func WithGormConfigOpt(f func(options *contract.DBConfig)) contract.DBOption {
+	return func(container framework.Container, config *contract.DBConfig) error {
+		f(config)
+		return nil
+	}
+}
+
 // WithDryRun 设置空跑模式
 func WithDryRun() contract.DBOption {
 	return func(container framework.Container, config *contract.DBConfig) error {

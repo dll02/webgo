@@ -20,3 +20,10 @@ dev: # 调试模式
     monitor_folder: "" # 监听文件夹地址，为空或者不填默认为AppFolder
   frontend: # 前端调试模式配置
     port: 8071 # 前端监听端口, 默认8071
+
+smtp:
+  host: "smtp.163.com"
+  port: 25
+  from: "dailingling_0@163.com"
+  username: "dailingling_0@163.com"
+  password: "ERUIJHJSKRQRABPD"

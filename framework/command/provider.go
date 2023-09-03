@@ -25,7 +25,7 @@ func initProviderCommand() *cobra.Command {
 
 // providerCommand 二级命令
 var providerCommand = &cobra.Command{
-	Use:   ".provider2",
+	Use:   "provider",
 	Short: "服务提供相关命令",
 	RunE: func(c *cobra.Command, args []string) error {
 		if len(args) == 0 {
@@ -129,12 +129,12 @@ var providerCreateCommand = &cobra.Command{
 		}
 		{
 			// 创建provider.go
-			file := filepath.Join(pFolder, folder, ".provider2.go")
+			file := filepath.Join(pFolder, folder, "provider.go")
 			f, err := os.Create(file)
 			if err != nil {
 				return err
 			}
-			t := template.Must(template.New(".provider2").Funcs(funcs).Parse(providerTmp))
+			t := template.Must(template.New("provider").Funcs(funcs).Parse(providerTmp))
 			if err := t.Execute(f, name); err != nil {
 				return err
 			}

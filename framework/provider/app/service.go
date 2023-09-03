@@ -80,7 +80,7 @@ func (app WebgoApp) Webgo() string {
 	if val, ok := app.configMap["provider_folder"]; ok {
 		return val
 	}
-	return filepath.Join(app.AppFolder(), ".provider2")
+	return filepath.Join(app.AppFolder(), "provider")
 }
 
 // MiddlewareFolder 定义业务自己定义的中间件
